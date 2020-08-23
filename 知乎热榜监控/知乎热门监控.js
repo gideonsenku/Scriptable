@@ -1,3 +1,10 @@
+// Variables used by Scriptable.
+// These must be at the very top of the file. Do not edit.
+// icon-color: deep-gray; icon-glyph: file-code;
+/**
+ * Author: evilbutcher
+ * Github: https://github.com/evilbutcher
+ */
 const $ = new importModule("Env")();
 const res = await getinfo();
 if (config.runsInWidget) {

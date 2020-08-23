@@ -1,3 +1,10 @@
+// Variables used by Scriptable.
+// These must be at the very top of the file. Do not edit.
+// icon-color: cyan; icon-glyph: mobile-alt;
+/**
+ * Author: GideonSenku  evilbutcher
+ * Github: https://github.com/GideonSenku
+ */
 const tel = `填入你的电话号码`
 const VAL_loginheader = `填入来自BoxJs的数据`
 
@@ -28,13 +35,7 @@ function createWidget(res) {
     bgColor.locations = [0.0, 1.0]
     w.backgroundGradient = bgColor
     w.centerAlignContent()
-
-    const time = new Date()
-    const dfTime = new DateFormatter()
-    dfTime.locale = "en"
-    dfTime.useMediumDateStyle()
-    dfTime.useNoTimeStyle()
-
+    
     const firstLine = w.addText(`[📱]中国联不通`)
     firstLine.textSize = 12
     firstLine.textColor = Color.white()
