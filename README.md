@@ -22,7 +22,7 @@
 
 <img src="https://user-images.githubusercontent.com/39037656/90978946-fc06c500-e583-11ea-82dc-217a487df57f.PNG" height="30%" width="30%">
 
-## 知乎热榜、微博热搜、B站榜单、RSS、人人影视资源监控
+## 知乎热榜、微博热搜、B站榜单、RSS、豆瓣、人人影视资源监控
 作者[@evilbutcher](https://github.com/evilbutcher)
 ### 食用方式
 0. 直接导入即可

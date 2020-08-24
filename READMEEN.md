@@ -4,7 +4,7 @@
 
 ## China Unicom Info
 
-> 2020.08.23 First realization of China Unicom information script
+> 2020.08.23 First realization of China Unicom information script  
 > 2020.08.24 Add author information
 ### How to Use
 0. Prerequisite you need `Scriptable` [TestFlight地址](https://testflight.apple.com/join/uN1vTqxk)
@@ -22,7 +22,7 @@
 
 <img src="https://user-images.githubusercontent.com/39037656/90978946-fc06c500-e583-11ea-82dc-217a487df57f.PNG" height="30%" width="30%">
 
-## Zhihu Weibo Bilibili RSS RRShare Monitor
+## Zhihu Weibo Bilibili RSS Douban RRShare Monitor
 Author [@evilbutcher](https://github.com/evilbutcher)
 ### How to Use
 0. Import directly
