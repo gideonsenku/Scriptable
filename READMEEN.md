@@ -22,7 +22,7 @@
 
 <img src="https://user-images.githubusercontent.com/39037656/90978946-fc06c500-e583-11ea-82dc-217a487df57f.PNG" height="30%" width="30%">
 
-## Zhihu Hotlist Monitoring
+## Zhihu Weibo Bilibili RSS RRShare Monitor
 Author [@evilbutcher](https://github.com/evilbutcher)
 ### How to Use
 0. Import directly
