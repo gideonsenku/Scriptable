@@ -6,7 +6,7 @@
  * Github: https://github.com/evilbutcher
  * 本脚本使用了@Gideon_Senku的Env.scriptable，感谢！
  */
-
+const goupdate = false;
 const $ = new importModule("Env")();
 const res = await getinfo();
 
@@ -15,12 +15,12 @@ Script.setWidget(widget);
 Script.complete();
 
 function createWidget(res) {
-  const obj = res;
   items = [];
   for (var i = 0; i < 6; i++) {
-    var item = obj[i]["file_name"];
+    var item = res[i]["file_name"];
     items.push(item);
   }
+  console.log(items);
 
   const w = new ListWidget();
   const bgColor = new LinearGradient();
@@ -57,6 +57,7 @@ function createWidget(res) {
   const top6Line = w.addText(`•${items[5]}`);
   top6Line.textSize = 12;
   top6Line.textColor = new Color("#ffa7d3");
+  w.presentMedium();
   return w;
 }
 
@@ -74,3 +75,21 @@ async function getinfo() {
   log(res);
   return res;
 }
+
+//更新代码
+function update() {
+  log("🔔更新脚本开始!");
+  scripts.forEach(async (script) => {
+    await $.getFile(script);
+  });
+  log("🔔更新脚本结束!");
+}
+
+const scripts = [
+  {
+    moduleName: "RRShareMonitor",
+    url:
+      "https://raw.githubusercontent.com/GideonSenku/Scriptable/master/RRShare/RRShareMonitor.js",
+  },
+];
+if (goupdate == true) update();

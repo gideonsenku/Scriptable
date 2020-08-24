@@ -1,6 +1,6 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
-// icon-color: pink; icon-glyph: bolt;
+// icon-color: green; icon-glyph: film;
 /*
  * Author: evilbutcher
  * Github: https://github.com/evilbutcher
@@ -8,7 +8,6 @@
  */
 const goupdate = false;
 const $ = new importModule("Env")();
-const rid = 0; //手动更改B站榜单对应关系：0全站，1动画，3音乐，4游戏，5娱乐，36科技，119鬼畜，129舞蹈。
 const res = await getinfo();
 
 let widget = createWidget(res);
@@ -16,7 +15,7 @@ Script.setWidget(widget);
 Script.complete();
 
 function createWidget(res) {
-  var group = res.data;
+  var group = res["subject_collection_items"];
   items = [];
   for (var i = 0; i < 6; i++) {
     var item = group[i].title;
@@ -31,7 +30,7 @@ function createWidget(res) {
   w.backgroundGradient = bgColor;
   w.centerAlignContent();
 
-  const firstLine = w.addText(`[📣]B站榜单`);
+  const firstLine = w.addText(`[📣]豆瓣电影`);
   firstLine.textSize = 12;
   firstLine.textColor = Color.white();
   firstLine.textOpacity = 0.7;
@@ -64,11 +63,16 @@ function createWidget(res) {
 }
 
 async function getinfo() {
-  const blRequest = {
-    url: `https://app.bilibili.com/x/v2/rank/region?rid=${rid}`,
+  const dbheader = {
+    Referer: `https://m.douban.com/pwa/cache_worker`,
+  };
+  const dbRequest = {
+    url:
+      "https://m.douban.com/rexxar/api/v2/subject_collection/movie_real_time_hotest/items?start=0&count=50&items_only=1&for_mobile=1",
+    headers: dbheader,
   };
 
-  const res = await $.get(blRequest);
+  const res = await $.get(dbRequest);
   log(res);
   return res;
 }
@@ -84,9 +88,9 @@ function update() {
 
 const scripts = [
   {
-    moduleName: "BilibiliMonitor",
+    moduleName: "DoubanMonitor",
     url:
-      "https://raw.githubusercontent.com/GideonSenku/Scriptable/master/Bilibili/BilibiliMonitor.js",
+      "https://raw.githubusercontent.com/GideonSenku/Scriptable/master/Douban/DoubanMonitor.js",
   },
 ];
 if (goupdate == true) update();
