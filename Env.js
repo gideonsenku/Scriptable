@@ -50,19 +50,23 @@ module.exports = () => {
     }
     
     async getFile({moduleName, url}) {
+      log(`开始下载文件: 🌝 ${moduleName}`)
       const header = `// Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: deep-gray; icon-glyph: file-code;\n`;
       const content = await this.getStr({ url })
       const fileHeader = content.includes('icon-color') ? `` : header
       this.writeFile(`${moduleName}`, `${fileHeader}${content}`)
+      log(`文件下载完成: 🌚 ${moduleName}`)
     }
     
     async require({ moduleName, url = '', forceDownload = false }) {
       if (this.isFileExists(moduleName) && !forceDownload) {
+        log(`导入模块: 🪐${moduleName}`)
         return importModule(moduleName)
       } else {
         await this.getFile({moduleName, url})
+        log(`导入模块: 🪐${moduleName}`)
         return importModule(moduleName)
       }
     }
