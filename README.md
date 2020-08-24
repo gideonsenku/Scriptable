@@ -1,5 +1,6 @@
 # Scriptable
 
+[English Version](https://github.com/GideonSenku/Scriptable/blob/master/READMEEN.md)
 
 ## China Unicom Info
 
