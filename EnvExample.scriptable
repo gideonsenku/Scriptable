@@ -1,0 +1,12 @@
+{
+  "always_run_in_app" : false,
+  "icon" : {
+    "color" : "pink",
+    "glyph" : "keyboard"
+  },
+  "name" : "EnvExample",
+  "script" : "\/**\n * Author: GideonSenku\n * Github: https:\/\/github.com\/GideonSenku\n *\/\n\n\/\/ init\nconst $ = new importModule('Env')()\n\/\/ require some file,if file is JS and support module you can use it dirtctly\nconst opts = {\n  moduleName: \"vue\",\n  url: \"https:\/\/cdn.jsdelivr.net\/npm\/vue@2.6.11\"\n  \/** option:foreceDownload type:bool\n  *\/\n}\nconst Vue = await $.require(opts)\nnew Vue({\n  template:`\n  <h1>Hello,Vue<\/h1>\n  `,\n  data() {\n    return {\n      name: 'Senku',\n      age: 18,\n      height: '1.88'\n    }\n  },\n  methods: {\n    \n  },\n  computed: {\n    \n  },\n  beforeCreate() {\n    console.log(\"Vue beforeCreated\")\n  }\n})\n\nconst fileName = $.initFile('Env')\nlog(fileName)\n\/\/ wirteFile\n$.writeFile('nihao.txt',`\nconst name = Senku,\nconst age = 18\nconst height = 1.88\n`)\n\/\/ readFile\nconst filedata = $.readFile('nihao.txt')\nlog(filedata)\n\n\/\/ getStr and callback headers\nconst url = `https:\/\/github.com\/GideonSenku\/Scriptable\/blob\/master\/READMEEN.md`\nconst res = $.getStr({url},(headers) => {\n  log(headers)\n})\n\nlog(res)\n\n",
+  "share_sheet_inputs" : [
+
+  ]
+}
