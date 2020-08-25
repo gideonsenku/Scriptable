@@ -36,31 +36,31 @@ function createWidget(res) {
     w.centerAlignContent();
 
     const firstLine = w.addText(`[📣]${titlerss}`);
-    firstLine.textSize = 12;
+    firstLine.textSize = 14;
     firstLine.textColor = Color.white();
     firstLine.textOpacity = 0.7;
 
-    const top1Line = w.addText(`[第一名]${items[0]}`);
+    const top1Line = w.addText(`•${items[0]}`);
     top1Line.textSize = 12;
     top1Line.textColor = Color.white();
 
-    const top2Line = w.addText(`[第二名]${items[1]}`);
+    const top2Line = w.addText(`•${items[1]}`);
     top2Line.textSize = 12;
     top2Line.textColor = new Color("#6ef2ae");
 
-    const top3Line = w.addText(`[第三名]${items[2]}`);
+    const top3Line = w.addText(`•${items[2]}`);
     top3Line.textSize = 12;
     top3Line.textColor = new Color("#7dbbae");
 
-    const top4Line = w.addText(`[第四名]${items[3]}`);
+    const top4Line = w.addText(`•${items[3]}`);
     top4Line.textSize = 12;
     top4Line.textColor = new Color("#ff9468");
 
-    const top5Line = w.addText(`[第五名]${items[4]}`);
+    const top5Line = w.addText(`•${items[4]}`);
     top5Line.textSize = 12;
     top5Line.textColor = new Color("#ffcc66");
 
-    const top6Line = w.addText(`[第六名]${items[5]}`);
+    const top6Line = w.addText(`•${items[5]}`);
     top6Line.textSize = 12;
     top6Line.textColor = new Color("#ffa7d3");
     w.presentMedium();
