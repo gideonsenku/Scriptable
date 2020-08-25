@@ -8,7 +8,9 @@
  */
 const goupdate = false;
 const $ = new importModule("Env")();
-const rsslink = "http://songshuhui.net/feed"; //填写RSS订阅链接
+// 填写RSS订阅链接,默认为仓库的最近Commit
+// Fill in the RSS subscription link, the default is the latest Commit of the Repo
+const rsslink = "https://github.com/GideonSenku/Scriptable/commits/master.atom"; 
 const res = await getinfo();
 
 let widget = createWidget(res);
