@@ -20,7 +20,7 @@ const scripts = [
     },
     {
       moduleName: 'RSSMonitor',
-      url: 'https://raw.githubusercontent.com/GideonSenku/Scriptable/master/RSS/RSS.js'
+      url: 'https://raw.githubusercontent.com/GideonSenku/Scriptable/master/RSS/RSSMonitor.js'
     },
     {
       moduleName: 'WeiboMonitor',

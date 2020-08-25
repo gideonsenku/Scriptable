@@ -27,11 +27,12 @@
 Author [@evilbutcher](https://github.com/evilbutcher)
 ### How to Use
 0. Import directly
+1.Some script need Config，Click [here(Module)](https://github.com/evilbutcher/Scriptables/blob/master/Config.scriptable)or[here(JS)](https://github.com/evilbutcher/Scriptables/blob/master/Config.js) to install.  
 
-Bilibili[link](https://github.com/GideonSenku/Scriptable/tree/master/Bilibili)  
+Bilibili[link](https://github.com/GideonSenku/Scriptable/tree/master/Bilibili) Use Config would be beter.  
 Douban[link](https://github.com/GideonSenku/Scriptable/tree/master/Douban)  
 RRShare[link](https://github.com/GideonSenku/Scriptable/tree/master/RRShare)  
-RSS[link](https://github.com/GideonSenku/Scriptable/tree/master/RSS)  
+RSS[link](https://github.com/GideonSenku/Scriptable/tree/master/RSS) Use Config would be beter.  
 Weibo[link](https://github.com/GideonSenku/Scriptable/tree/master/Weibo)  
 Zhihu[link](https://github.com/GideonSenku/Scriptable/tree/master/Zhihu)  
 
