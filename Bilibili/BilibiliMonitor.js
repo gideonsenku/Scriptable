@@ -7,12 +7,12 @@
  * 本脚本使用了@Gideon_Senku的Env.scriptable，感谢！
  */
 const goupdate = true;
-const $ = new importModule("Env")();
+const $ = importModule("Env")
 //rid对应不同的B站榜单：0全站，1动画，3音乐，4游戏，5娱乐，36科技，119鬼畜，129舞蹈。
 var rid = 0;
 try {
-  const con = new importModule("Config")();
-  var rid = con.bilibili();
+  const { bilibili } = importModule("Config")
+  var rid = bilibili();
   console.log("将使用配置文件内榜单编号");
 } catch (e) {
   console.log("将使用脚本内榜单编号");

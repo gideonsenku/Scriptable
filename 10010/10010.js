@@ -2,13 +2,13 @@
 // These must be at the very top of the file. Do not edit.
 // icon-color: cyan; icon-glyph: mobile-alt;
 /**
- * Author: GideonSenku  evilbutcher
+ * Author: GideonSenku
  * Github: https://github.com/GideonSenku
  */
 const tel = `填入你的电话号码`
 const VAL_loginheader = `填入来自BoxJs的数据`
 
-const $ = new importModule('Env')()
+const $ = importModule('Env')
 const res = await getinfo()
 if (config.runsInWidget) {
   let widget = createWidget(res)
@@ -35,8 +35,8 @@ function createWidget(res) {
     bgColor.locations = [0.0, 1.0]
     w.backgroundGradient = bgColor
     w.centerAlignContent()
-    
-    const firstLine = w.addText(`[📱]中国联不通`)
+
+    const firstLine = w.addText(`[📱]中国联通`)
     firstLine.textSize = 12
     firstLine.textColor = Color.white()
     firstLine.textOpacity = 0.7

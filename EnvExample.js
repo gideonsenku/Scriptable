@@ -7,7 +7,17 @@
  */
 
 // init
-const $ = new importModule('Env')()
+// importModule all of Env
+const $ = importModule('Env')
+/**
+ * importModule part of Env
+ * example:
+ * get(opts) for HTTP GET Methods
+ */
+const { get, post, msg } = importModule('Env')
+
+msg('title','message','option')
+
 // require some file,if file is JS and support module you can use it dirtctly
 const opts = {
   moduleName: "vue",
@@ -15,28 +25,9 @@ const opts = {
   /** option:foreceDownload type:bool
   */
 }
+
 const Vue = await $.require(opts)
-new Vue({
-  template:`
-  <h1>Hello,Vue</h1>
-  `,
-  data() {
-    return {
-      name: 'Senku',
-      age: 18,
-      height: '1.88'
-    }
-  },
-  methods: {
-    
-  },
-  computed: {
-    
-  },
-  beforeCreate() {
-    console.log("Vue beforeCreated")
-  }
-})
+
 
 const fileName = $.initFile('Env')
 log(fileName)

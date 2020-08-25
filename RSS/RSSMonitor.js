@@ -7,12 +7,12 @@
  * 本脚本使用了@Gideon_Senku的Env.scriptable，感谢！
  */
 const goupdate = true; //默认关闭，需要更新时请手动打开
-const $ = new importModule("Env")();
+const $ = importModule("Env")
 // 填写RSS订阅链接,默认为仓库的最近Commit
 // Fill in the RSS subscription link, the default is the latest Commit of the Repo
 var rsslink = "https://github.com/GideonSenku/Scriptable/commits/master.atom";
 try {
-  const con = new importModule("Config")();
+  const con = importModule("Config")
   var rsslink = con.rsslink();
   console.log("将使用配置文件内订阅链接");
 } catch (e) {

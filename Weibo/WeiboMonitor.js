@@ -7,7 +7,7 @@
  * 本脚本使用了@Gideon_Senku的Env.scriptable，感谢！
  */
 const goupdate = true;
-const $ = new importModule("Env")();
+const $ = importModule("Env")
 const res = await getinfo();
 
 let widget = createWidget(res);
