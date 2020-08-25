@@ -91,7 +91,7 @@ const scripts = [
   {
     moduleName: "RSSMonitor",
     url:
-      "https://raw.githubusercontent.com/GideonSenku/Scriptable/master/RSS/RSS.js",
+      "https://raw.githubusercontent.com/GideonSenku/Scriptable/master/RSS/RSSMonitor.js",
   },
 ];
 if (goupdate == true) update();
