@@ -6,11 +6,19 @@
  * Github: https://github.com/evilbutcher
  * 本脚本使用了@Gideon_Senku的Env.scriptable，感谢！
  */
-const goupdate = false;
+const goupdate = true; //默认关闭，需要更新时请手动打开
 const $ = new importModule("Env")();
 // 填写RSS订阅链接,默认为仓库的最近Commit
 // Fill in the RSS subscription link, the default is the latest Commit of the Repo
-const rsslink = "https://github.com/GideonSenku/Scriptable/commits/master.atom"; 
+var rsslink = "https://github.com/GideonSenku/Scriptable/commits/master.atom";
+try {
+  const con = new importModule("Config")();
+  var rsslink = con.rsslink();
+  console.log("将使用配置文件内订阅链接");
+} catch (e) {
+  console.log("将使用脚本内订阅链接");
+}
+
 const res = await getinfo();
 
 let widget = createWidget(res);
@@ -93,7 +101,7 @@ const scripts = [
   {
     moduleName: "RSSMonitor",
     url:
-      "https://raw.githubusercontent.com/GideonSenku/Scriptable/master/RSS/RSSMonitor.js",
+      "https://raw.githubusercontent.com/evilbutcher/Scriptables/master/RSSMonitor.js",
   },
 ];
 if (goupdate == true) update();

@@ -27,11 +27,12 @@
 作者[@evilbutcher](https://github.com/evilbutcher)
 ### 食用方式
 0. 直接导入即可
+1.部分脚本需要Config，点击[这里(模块)](https://github.com/evilbutcher/Scriptables/blob/master/Config.scriptable)或[这里(JS)](https://github.com/evilbutcher/Scriptables/blob/master/Config.js)安装。  
 
-B站榜单[地址](https://github.com/GideonSenku/Scriptable/tree/master/Bilibili)  
+B站榜单[地址](https://github.com/GideonSenku/Scriptable/tree/master/Bilibili) 最好使用Config  
 豆瓣电影监控[地址](https://github.com/GideonSenku/Scriptable/tree/master/Douban)  
 人人影视资源[地址](https://github.com/GideonSenku/Scriptable/tree/master/RRShare)  
-RSS监控[地址](https://github.com/GideonSenku/Scriptable/tree/master/RSS)  
+RSS监控[地址](https://github.com/GideonSenku/Scriptable/tree/master/RSS) 最好使用Config  
 微博热搜[地址](https://github.com/GideonSenku/Scriptable/tree/master/Weibo)  
 知乎热榜[地址](https://github.com/GideonSenku/Scriptable/tree/master/Zhihu)  
 

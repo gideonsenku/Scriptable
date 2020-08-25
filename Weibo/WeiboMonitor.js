@@ -6,7 +6,7 @@
  * Github: https://github.com/evilbutcher
  * 本脚本使用了@Gideon_Senku的Env.scriptable，感谢！
  */
-const goupdate = false;
+const goupdate = true;
 const $ = new importModule("Env")();
 const res = await getinfo();
 
@@ -88,7 +88,7 @@ const scripts = [
   {
     moduleName: "WeiboMonitor",
     url:
-      "https://raw.githubusercontent.com/GideonSenku/Scriptable/master/Weibo/WeiboMonitor.js",
+      "https://raw.githubusercontent.com/evilbutcher/Scriptables/master/WeiboMonitor.js",
   },
 ];
 if (goupdate == true) update();
