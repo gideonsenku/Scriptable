@@ -1,6 +1,3 @@
-// Variables used by Scriptable.
-// These must be at the very top of the file. Do not edit.
-// icon-color: brown; icon-glyph: terminal;
 /**
  * Author: GideonSenku
  * Github: https://github.com/GideonSenku
@@ -14,39 +11,31 @@ const defaultHeaders = {
   "Content-Type": "application/json"
 }
 
-const get = async ({
-  url,
-  headers = {}
-}) => {
+const get = async ({url, headers = {}}, callback = () => {}) => {
   request.url = url
   request.method = 'GET'
   request.headers = {
     ...headers,
     ...defaultHeaders
   }
-  return await request.loadJSON()
+  const data = await request.loadJSON()
+  callback(request.response, data)
+  return data
 }
 
-const getStr = async ({
-  url,
-  headers = {}
-}, callback = () => {}) => {
+const getStr = async ({url, headers = {}}, callback = () => {}) => {
   request.url = url
   request.method = 'GET'
   request.headers = {
     ...headers,
     ...defaultHeaders
   }
-  const res = await request.loadString()
-  callback(request.response)
-  return res
+  const data = await request.loadString()
+  callback(request.response, data)
+  return data
 }
 
-const post = async ({
-  url,
-  body,
-  headers = {}
-}) => {
+const post = async ({url, body, headers = {}}) => {
   request.url = url
   request.body = body ? JSON.stringify(body) : `{}`
   request.method = 'POST'
@@ -54,20 +43,17 @@ const post = async ({
     ...headers,
     ...defaultHeaders
   }
-  return await request.loadJSON()
+  const data = await request.loadString()
+  callback(request.response, data)
+  return data
 }
 
-const getFile = async ({
-  moduleName,
-  url
-}) => {
+const getFile = async ({moduleName, url}) => {
   log(`开始下载文件: 🌝 ${moduleName}`)
   const header = `// Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: deep-gray; icon-glyph: file-code;\n`;
-  const content = await getStr({
-    url
-  })
+  const content = await getStr({url})
   const fileHeader = content.includes('icon-color') ? `` : header
   writeFile(`${moduleName}`, `${fileHeader}${content}`)
   log(`文件下载完成: 🌚 ${moduleName}`)
@@ -113,7 +99,7 @@ const readFile = (fileName) => {
   return FileManager.iCloud().readString(`${dict}/${file}`)
 }
 
-const msg = function(title, message, btnMes = 'Cancel') {
+const msg = (title, message, btnMes = 'Cancel') => {
   if (!config.runsInWidget) {
     const alert = new Alert()
     alert.title = title
@@ -121,6 +107,10 @@ const msg = function(title, message, btnMes = 'Cancel') {
     alert.addAction(btnMes)
     alert.present()
   }
+}
+
+const logErr = (e, messsage) => {
+  console.error(e)
 }
 
 module.exports = {
@@ -134,5 +124,6 @@ module.exports = {
   isFileExists,
   initFile,
   readFile,
-  msg
+  msg,
+  logErr
 }
