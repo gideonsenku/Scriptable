@@ -22,10 +22,18 @@
 
 <img src="https://user-images.githubusercontent.com/39037656/90978946-fc06c500-e583-11ea-82dc-217a487df57f.PNG" height="30%" width="30%">
 
-## 知乎热榜、微博热搜、B站榜单、RSS、豆瓣、人人影视资源监控
+## 热门监控
+#### 知乎热榜、微博热搜、B站榜单、RSS、豆瓣、人人影视资源
 作者[@evilbutcher](https://github.com/evilbutcher)
 ### 食用方式
 0. 直接导入即可
+
+B站榜单[地址](https://github.com/GideonSenku/Scriptable/tree/master/Bilibili)  
+豆瓣电影监控[地址](https://github.com/GideonSenku/Scriptable/tree/master/Douban)  
+人人影视资源[地址](https://github.com/GideonSenku/Scriptable/tree/master/RRShare)  
+RSS监控[地址](https://github.com/GideonSenku/Scriptable/tree/master/RSS)  
+微博热搜[地址](https://github.com/GideonSenku/Scriptable/tree/master/Weibo)  
+知乎热榜[地址](https://github.com/GideonSenku/Scriptable/tree/master/Zhihu)  
 
 <img src="https://user-images.githubusercontent.com/39037656/90985347-e4443680-e5ad-11ea-9217-03938837199b.PNG" height="30%" width="30%">
 

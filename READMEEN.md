@@ -22,9 +22,17 @@
 
 <img src="https://user-images.githubusercontent.com/39037656/90978946-fc06c500-e583-11ea-82dc-217a487df57f.PNG" height="30%" width="30%">
 
-## Zhihu Weibo Bilibili RSS Douban RRShare Monitor
+## Hotlist Monitor
+#### Zhihu Weibo Bilibili RSS Douban RRShare 
 Author [@evilbutcher](https://github.com/evilbutcher)
 ### How to Use
 0. Import directly
+
+Bilibili[link](https://github.com/GideonSenku/Scriptable/tree/master/Bilibili)  
+Douban[link](https://github.com/GideonSenku/Scriptable/tree/master/Douban)  
+RRShare[link](https://github.com/GideonSenku/Scriptable/tree/master/RRShare)  
+RSS[link](https://github.com/GideonSenku/Scriptable/tree/master/RSS)  
+Weibo[link](https://github.com/GideonSenku/Scriptable/tree/master/Weibo)  
+Zhihu[link](https://github.com/GideonSenku/Scriptable/tree/master/Zhihu)  
 
 <img src="https://user-images.githubusercontent.com/39037656/90985347-e4443680-e5ad-11ea-9217-03938837199b.PNG" height="30%" width="30%">
