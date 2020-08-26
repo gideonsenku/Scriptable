@@ -2,7 +2,7 @@
 
 [English Version](https://github.com/GideonSenku/Scriptable/blob/master/READMEEN.md)
 
-## China Unicom Info
+## China Unicom Info && China Mobile Info
 
 > 2020.08.23 First realization of China Unicom information script  
 > 2020.08.24 Add author information
@@ -16,11 +16,12 @@
    - tel: Your China Unicom phone number
    - VAL_loginheader: Data from BoxJs `chavy_tokenheader_10010`
 
-3. Widget style reference[@spencerwooo](https://gist.github.com/spencerwooo/7955aefc4ffa5bc8ae7c83d85d05e7a4)
+3. 10010 Widget style reference[@spencerwooo](https://gist.github.com/spencerwooo/7955aefc4ffa5bc8ae7c83d85d05e7a4)
 4. Add widget and select the `10010` script, the rendering is as follows
 
 
-<img src="https://user-images.githubusercontent.com/39037656/90978946-fc06c500-e583-11ea-82dc-217a487df57f.PNG" height="30%" width="30%">
+<img src="https://user-images.githubusercontent.com/39037656/91274920-05757480-e7b2-11ea-8704-febb2732a62b.PNG" height="30%" width="30%">
+<img src="https://user-images.githubusercontent.com/39037656/91274766-c47d6000-e7b1-11ea-9765-170cb66c5f65.PNG" height="30%" width="30%">
 
 ## Hotlist Monitor
 #### Zhihu Weibo Bilibili RSS Douban RRShare 

@@ -11,6 +11,10 @@ const scripts = [
       url: 'https://raw.githubusercontent.com/GideonSenku/Scriptable/master/10010/10010.js'
     },
     {
+      moduleName: '10086',
+      url: 'https://raw.githubusercontent.com/GideonSenku/Scriptable/master/10086/10086.js'
+    },
+    {
       moduleName: 'BilibiliMonitor',
       url: 'https://raw.githubusercontent.com/GideonSenku/Scriptable/master/Bilibili/BilibiliMonitor.js'
     },
@@ -37,14 +41,18 @@ const scripts = [
     {
       moduleName: 'Env',
       url: 'https://raw.githubusercontent.com/GideonSenku/Scriptable/master/Env.js'
+    },
+    {
+      moduleName: 'Install Scripts',
+      url: 'https://raw.githubusercontent.com/GideonSenku/Scriptable/master/Install%20Scripts.js'
     }
   ]
-  
-const $ = new importModule('Env')()
+  // Install Scripts.js
+const $ = importModule('Env')
 function update() {
   log('🔔更新脚本开始!')
-  scripts.forEach(async(script) => {
-    await $.getFile(script)
+  scripts.forEach((script) => {
+    $.getFile(script)
   })
   log('🔔更新脚本结束!')
 }
