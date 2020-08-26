@@ -170,6 +170,24 @@ const msg = (title, message, btnMes = 'Cancel') => {
   }
 }
 
+const setdata = (Val, Key) => {
+  Keychain.set(Val, Key)
+  return true
+}
+
+const getdata = (Key) => {
+  return Keychain.get(Key)
+}
+
+const hasdata = (Key) => {
+  return Keychain.contains(Key)
+}
+
+const rmdata = (Key) => {
+  Keychain.remove(Key)
+  return true
+}
+
 const logErr = (e, messsage) => {
   console.error(e)
 }
@@ -186,6 +204,10 @@ module.exports = {
   isFileExists,
   initFile,
   readFile,
+  setdata,
+  getdata,
+  hasdata,
+  rmdata,
   msg,
   logErr
 }
