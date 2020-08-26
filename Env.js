@@ -7,11 +7,11 @@
 const request = new Request('')
 const dict = FileManager.iCloud().documentsDirectory()
 const defaultHeaders = {
-  "Accept": "application/json",
+  "Accept": "*/*",
   "Content-Type": "application/json"
 }
 
-const get = async ({url, headers = {}}, callback = () => {}) => {
+const get = async ({ url, headers = {} }, callback = () => {} ) => {
   request.url = url
   request.method = 'GET'
   request.headers = {
@@ -23,7 +23,7 @@ const get = async ({url, headers = {}}, callback = () => {}) => {
   return data
 }
 
-const getStr = async ({url, headers = {}}, callback = () => {}) => {
+const getStr = async ({ url, headers = {} }, callback = () => {} ) => {
   request.url = url
   request.method = 'GET'
   request.headers = {
@@ -35,15 +35,15 @@ const getStr = async ({url, headers = {}}, callback = () => {}) => {
   return data
 }
 
-const post = async ({url, body, headers = {}}) => {
-  request.url = url
-  request.body = body ? JSON.stringify(body) : `{}`
-  request.method = 'POST'
-  request.headers = {
-    ...headers,
-    ...defaultHeaders
-  }
-  const data = await request.loadString()
+const post = async ({ url, body, headers = {} }, callback = () => {} ) => {
+    request.url = url
+    request.body = body
+    request.method = 'POST'
+    request.headers = {
+      ...defaultHeaders,
+      ...headers
+    }
+  const data = await request.loadJSON()
   callback(request.response, data)
   return data
 }
