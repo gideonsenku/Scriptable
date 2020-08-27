@@ -45,6 +45,14 @@ const scripts = [
     {
       moduleName: 'Install Scripts',
       url: 'https://raw.githubusercontent.com/GideonSenku/Scriptable/master/Install%20Scripts.js'
+    },
+    {
+      moduleName: 'Checkin',
+      url: 'https://raw.githubusercontent.com/evilbutcher/Scriptables/master/Checkin.js'
+    },
+    {
+      moduleName: 'Dler Cloud',
+      url: 'https://raw.githubusercontent.com/evilbutcher/Scriptables/master/Dler%20Cloud.js'
     }
   ]
   // Install Scripts.js
