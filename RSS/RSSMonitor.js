@@ -7,12 +7,12 @@
  * 本脚本使用了@Gideon_Senku的Env.scriptable，感谢！
  */
 const goupdate = true; //默认关闭，需要更新时请手动打开
-const $ = importModule("Env")
+const $ = importModule("Env");
 // 填写RSS订阅链接,默认为仓库的最近Commit
 // Fill in the RSS subscription link, the default is the latest Commit of the Repo
 var rsslink = "https://github.com/GideonSenku/Scriptable/commits/master.atom";
 try {
-  const con = importModule("Config")
+  const con = importModule("Config");
   var rsslink = con.rsslink();
   console.log("将使用配置文件内订阅链接");
 } catch (e) {
@@ -48,27 +48,27 @@ function createWidget(res) {
     firstLine.textColor = Color.white();
     firstLine.textOpacity = 0.7;
 
-    const top1Line = w.addText(`•${items[0]}`);
+    const top1Line = w.addText(`• ${items[0]}`);
     top1Line.textSize = 12;
     top1Line.textColor = Color.white();
 
-    const top2Line = w.addText(`•${items[1]}`);
+    const top2Line = w.addText(`• ${items[1]}`);
     top2Line.textSize = 12;
     top2Line.textColor = new Color("#6ef2ae");
 
-    const top3Line = w.addText(`•${items[2]}`);
+    const top3Line = w.addText(`• ${items[2]}`);
     top3Line.textSize = 12;
     top3Line.textColor = new Color("#7dbbae");
 
-    const top4Line = w.addText(`•${items[3]}`);
+    const top4Line = w.addText(`• ${items[3]}`);
     top4Line.textSize = 12;
     top4Line.textColor = new Color("#ff9468");
 
-    const top5Line = w.addText(`•${items[4]}`);
+    const top5Line = w.addText(`• ${items[4]}`);
     top5Line.textSize = 12;
     top5Line.textColor = new Color("#ffcc66");
 
-    const top6Line = w.addText(`•${items[5]}`);
+    const top6Line = w.addText(`• ${items[5]}`);
     top6Line.textSize = 12;
     top6Line.textColor = new Color("#ffa7d3");
     w.presentMedium();
