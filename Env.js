@@ -91,7 +91,7 @@ const getFile = async ({moduleName, url}) => {
 // icon-color: deep-gray; icon-glyph: file-code;\n`;
   const content = await getStr({url})
   const fileHeader = content.includes('icon-color') ? `` : header
-  writeFile(`${moduleName}`, `${fileHeader}${content}`)
+  write(`${moduleName}`, `${fileHeader}${content}`)
   log(`文件下载完成: 🌚 ${moduleName}`)
 }
 
