@@ -2,13 +2,27 @@
 // These must be at the very top of the file. Do not edit.
 // icon-color: cyan; icon-glyph: mobile-alt;
 /**
- * Author: GideonSenku
+ * Author: GideonSenku  evilbutcher
  * Github: https://github.com/GideonSenku
  */
+
+const $ = importModule('Env')
+
+const prefix = 'boxjs.net' //修改成你用的域名
+
+// option1 manual
 const tel = `填入你的电话号码`
 const VAL_loginheader = `填入来自BoxJs的数据`
 
-const $ = importModule('Env')
+
+// option2 auto getdata from BoxJS
+$.KEY_signheader = 'chavy_signheader_10010'
+$.KEY_loginheader = 'chavy_tokenheader_10010'
+
+$.Val_signheader = await getdata($.KEY_signheader)
+$.Val_loginheader = await getdata($.KEY_loginheader)
+
+
 const res = await getinfo()
 if (config.runsInWidget) {
   let widget = createWidget(res)
@@ -35,7 +49,7 @@ function createWidget(res) {
     bgColor.locations = [0.0, 1.0]
     w.backgroundGradient = bgColor
     w.centerAlignContent()
-
+    
     const firstLine = w.addText(`[📱]中国联通`)
     firstLine.textSize = 12
     firstLine.textColor = Color.white()
@@ -64,19 +78,42 @@ function createWidget(res) {
     const moneyLine = w.addText(`[${money.remainTitle}]${money.number}${money.unit}`)
     moneyLine.textSize = 12
     moneyLine.textColor = new Color("#ffa7d3")
+    w.presentSmall()
     return w
   }
 }
 
 
 async function getinfo() {
+  const telNum = $.VAL_signheader ? gettel() : tel
+  const loginheader = $.Val_loginheader ? $.Val_loginheader : VAL_loginheader
   const url = {
-    url: `https://m.client.10010.com/mobileService/home/queryUserInfoSeven.htm?version=iphone_c@7.0403&desmobiel=${tel}&showType=3`,
+    url: `https://m.client.10010.com/mobileService/home/queryUserInfoSeven.htm?version=iphone_c@7.0403&desmobiel=${telNum}&showType=3`,
     headers: {
-      "Cookie": JSON.parse(VAL_loginheader)["Cookie"]
+      "Cookie": JSON.parse(loginheader)["Cookie"]
     }
   }
   const res = await $.get(url)
-  log(res)
   return res
+}
+
+function gettel() {
+    const reqheaders = JSON.parse($.VAL_signheader)
+    const reqreferer = reqheaders.Referer
+    const reqCookie = reqheaders.Cookie
+    let tel = ''
+    if (reqreferer.indexOf(`desmobile=`) >= 0) tel = reqreferer.match(/desmobile=(.*?)(&|$)/)[1]
+    if (tel == '' && reqCookie.indexOf(`u_account=`) >= 0) tel = reqCookie.match(/u_account=(.*?);/)[1]
+    return tel
+}
+
+
+async function getdata(key){
+  const url = `http://${prefix}/query/boxdata`
+  const boxdata = await $.get({url})
+  if (boxdata.datas[key]) {
+    return boxdata.datas[key]
+  } else {
+    return undefined
+  }
 }
