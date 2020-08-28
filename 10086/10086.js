@@ -12,7 +12,7 @@ const $ = importModule('Env')
 
 const chavy_autologin_cmcc = `直接将本段子界文字替换成BoxJS中的chavy_autologin_cmcc数据，或者抓包填入一个request对象`
 
-const chavy_getfee_cmcc = `直接将本段子界文字替换成BoxJS中的chavy_getfee_cmcc数据，或者抓包填入一个request对象`
+const chavy_getfee_cmcc = `直接将本段子界文字替换成BoxJS中的chavy_autologin_cmcc数据，或者抓包填入一个request对象`
 
 $.KEY_autologin = 'chavy_autologin_cmcc'
 
@@ -22,7 +22,11 @@ $.KEY_getfee = 'chavy_getfee_cmcc'
 async function getdata(key){
   const url = `http://${prefix}/query/boxdata`
   const boxdata = await $.get({url})
-  return boxdata.datas[key]
+  if (!boxdata.datas[key]) {
+    return boxdata.datas[key]
+  } else {
+    return undefined
+  }
 }
 
 
@@ -47,7 +51,7 @@ const crypto = {
 
 function loginapp() {
   return new Promise((resolve) => {
-    const url = JSON.parse($.autologin) || JSON.parse(chavy_autologin_cmcc)
+    const url = $.autologin ? JSON.parse($.autologin) : JSON.parse(chavy_autologin_cmcc)
     $.post(url, (resp, data) => {
       try {
         $.setck = resp.headers['Set-Cookie']
@@ -64,7 +68,7 @@ function loginapp() {
 
 function queryfee() {
   return new Promise((resolve) => {
-    const url = JSON.parse($.getfee) || JSON.parse(chavy_getfee_cmcc)
+    const url = $.getfee ? JSON.parse($.getfee) : JSON.parse(chavy_getfee_cmcc)
     const body = JSON.parse(decrypt(url.body, 'bAIgvwAuA4tbDr9d'))
     const cellNum = body.reqBody.cellNum
     const bodystr = `{"t":"${$.CryptoJS.MD5($.setck).toString()}","cv":"9.9.9","reqBody":{"cellNum":"${cellNum}"}}`
@@ -87,7 +91,7 @@ function queryfee() {
 
 function querymeal() {
   return new Promise((resolve) => {
-    const url = JSON.parse($.getfee) || JSON.parse(chavy_getfee_cmcc)
+    const url = $.getfee ? JSON.parse($.getfee) : JSON.parse(chavy_getfee_cmcc)
     url.url = 'https://clientaccess.10086.cn/biz-orange/BN/newComboMealResouceUnite/getNewComboMealResource'
     const body = JSON.parse(decrypt(url.body, 'bAIgvwAuA4tbDr9d'))
     const cellNum = body.reqBody.cellNum
