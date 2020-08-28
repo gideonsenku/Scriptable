@@ -8,6 +8,18 @@
  */
 const goupdate = true;
 const $ = importModule("Env");
+var num = 6; //自定义显示数量
+var rancolor = true; //true为开启随机颜色
+
+try {
+  var { wbnum, wbrancolor } = importModule("Config");
+  num = wbnum();
+  rancolor = wbrancolor();
+  console.log("将使用配置文件内微博配置");
+} catch (e) {
+  console.log("将使用脚本内微博配置");
+}
+
 const res = await getinfo();
 
 let widget = createWidget(res);
@@ -18,7 +30,7 @@ function createWidget(res) {
   if (res.data.cards[0].title == "实时热点，每分钟更新一次") {
     var group = res.data.cards[0]["card_group"];
     items = [];
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < num; i++) {
       var item = group[i].desc;
       items.push(item);
     }
@@ -32,7 +44,7 @@ function createWidget(res) {
     w.centerAlignContent();
 
     const firstLine = w.addText(`[📣]微博热搜`);
-    firstLine.textSize = 12;
+    firstLine.textSize = 15;
     firstLine.textColor = Color.white();
     firstLine.textOpacity = 0.7;
 
@@ -40,26 +52,11 @@ function createWidget(res) {
     top1Line.textSize = 12;
     top1Line.textColor = Color.white();
 
-    const top2Line = w.addText(`• ${items[1]}`);
-    top2Line.textSize = 12;
-    top2Line.textColor = new Color("#6ef2ae");
+    for (var i = 1; i < items.length; i++) {
+      addTextToListWidget(`• ${items[i]}`, w);
+    }
 
-    const top3Line = w.addText(`• ${items[2]}`);
-    top3Line.textSize = 12;
-    top3Line.textColor = new Color("#7dbbae");
-
-    const top4Line = w.addText(`• ${items[3]}`);
-    top4Line.textSize = 12;
-    top4Line.textColor = new Color("#ff9468");
-
-    const top5Line = w.addText(`• ${items[4]}`);
-    top5Line.textSize = 12;
-    top5Line.textColor = new Color("#ffcc66");
-
-    const top6Line = w.addText(`• ${items[5]}`);
-    top6Line.textSize = 12;
-    top6Line.textColor = new Color("#ffa7d3");
-    w.presentMedium();
+    w.presentSmall();
     return w;
   }
 }
@@ -69,10 +66,45 @@ async function getinfo() {
     url:
       "https://m.weibo.cn/api/container/getIndex?containerid=106003%26filter_type%3Drealtimehot",
   };
-
   const res = await $.get(url);
   log(res);
   return res;
+}
+
+function addTextToListWidget(text, listWidget) {
+  let item = listWidget.addText(text);
+  if (rancolor == true) {
+    item.textColor = new Color(color16());
+  } else {
+    item.textColor = Color.white();
+  }
+  item.textSize = 12;
+}
+
+function color16() {
+  var r = Math.floor(Math.random() * 256);
+  if (r + 50 < 255) {
+    r = r + 50;
+  }
+  if (r > 230 && r < 255) {
+    r = r - 50;
+  }
+  var g = Math.floor(Math.random() * 256);
+  if (g + 50 < 255) {
+    g = g + 50;
+  }
+  if (g > 230 && g < 255) {
+    g = g - 50;
+  }
+  var b = Math.floor(Math.random() * 256);
+  if (b + 50 < 255) {
+    b = b + 50;
+  }
+  if (b > 230 && b < 255) {
+    b = b - 50;
+  }
+  var color = "#" + r.toString(16) + g.toString(16) + b.toString(16);
+  return color;
 }
 
 //更新代码

@@ -16,27 +16,27 @@ const scripts = [
     },
     {
       moduleName: 'BilibiliMonitor',
-      url: 'https://raw.githubusercontent.com/GideonSenku/Scriptable/master/Bilibili/BilibiliMonitor.js'
+      url: 'https://raw.githubusercontent.com/evilbutcher/Scriptables/master/BilibiliMonitor.js'
     },
     {
       moduleName: 'RRShareMonitor',
-      url: 'https://raw.githubusercontent.com/GideonSenku/Scriptable/master/RRShare/RRShareMonitor.js'
+      url: 'https://raw.githubusercontent.com/evilbutcher/Scriptables/master/RRShareMonitor.js'
     },
     {
       moduleName: 'RSSMonitor',
-      url: 'https://raw.githubusercontent.com/GideonSenku/Scriptable/master/RSS/RSSMonitor.js'
+      url: 'https://raw.githubusercontent.com/evilbutcher/Scriptables/master/RSSMonitor.js'
     },
     {
       moduleName: 'WeiboMonitor',
-      url: 'https://raw.githubusercontent.com/GideonSenku/Scriptable/master/Weibo/WeiboMonitor.js'
+      url: 'https://raw.githubusercontent.com/evilbutcher/Scriptables/master/WeiboMonitor.js'
     },
     {
         moduleName: 'ZhihuMonitor',
-        url: 'https://raw.githubusercontent.com/GideonSenku/Scriptable/master/Zhihu/ZhihuMonitor.js'
+        url: 'https://raw.githubusercontent.com/evilbutcher/Scriptables/master/ZhihuMonitor.js'
     },
     {
         moduleName: "DoubanMonitor",
-        url: "https://raw.githubusercontent.com/GideonSenku/Scriptable/master/Douban/DoubanMonitor.js",
+        url: "https://raw.githubusercontent.com/evilbutcher/Scriptables/master/DoubanMonitor.js",
     },
     {
       moduleName: 'Env',
@@ -53,6 +53,10 @@ const scripts = [
     {
       moduleName: 'Dler Cloud',
       url: 'https://raw.githubusercontent.com/evilbutcher/Scriptables/master/Dler%20Cloud.js'
+    },
+    {
+      moduleName: 'Config',
+      url: 'https://raw.githubusercontent.com/evilbutcher/Scriptables/master/Config.js'
     }
   ]
   // Install Scripts.js
