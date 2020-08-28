@@ -22,7 +22,7 @@ $.KEY_getfee = 'chavy_getfee_cmcc'
 async function getdata(key){
   const url = `http://${prefix}/query/boxdata`
   const boxdata = await $.get({url})
-  if (!boxdata.datas[key]) {
+  if (boxdata.datas[key]) {
     return boxdata.datas[key]
   } else {
     return undefined
