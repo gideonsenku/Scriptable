@@ -7,11 +7,23 @@
  * Github: https://github.com/GideonSenku
  */
 
+const prefix = 'boxjs.net' //修改成你用的域名
 const $ = importModule('Env')
 
 const chavy_autologin_cmcc = `直接将本段子界文字替换成BoxJS中的chavy_autologin_cmcc数据，或者抓包填入一个request对象`
 
 const chavy_getfee_cmcc = `直接将本段子界文字替换成BoxJS中的chavy_getfee_cmcc数据，或者抓包填入一个request对象`
+
+$.KEY_autologin = 'chavy_autologin_cmcc'
+
+$.KEY_getfee = 'chavy_getfee_cmcc'
+
+
+async function getdata(key){
+  const url = `http://${prefix}/query/boxdata`
+  const boxdata = await $.get({url})
+  return boxdata.datas[key]
+}
 
 
 const crypto = {
@@ -19,8 +31,11 @@ const crypto = {
   url: 'https://raw.githubusercontent.com/GideonSenku/Scriptable/master/crypto-js.min.js'
 }
 
+
 !(async () => {
   $.CryptoJS = $.require(crypto)
+  $.autologin = await getdata($.KEY_autologin)
+  $.getfee = await getdata($.KEY_getfee)
   await loginapp()
   await queryfee()
   await querymeal()
@@ -29,6 +44,87 @@ const crypto = {
   .catch((e) => $.logErr(e))
   
   
+
+function loginapp() {
+  return new Promise((resolve) => {
+    const url = JSON.parse($.autologin) || JSON.parse(chavy_autologin_cmcc)
+    $.post(url, (resp, data) => {
+      try {
+        $.setck = resp.headers['Set-Cookie']
+        console.warn('login')
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve()
+      }
+    })
+  })
+}
+
+
+function queryfee() {
+  return new Promise((resolve) => {
+    const url = JSON.parse($.getfee) || JSON.parse(chavy_getfee_cmcc)
+    const body = JSON.parse(decrypt(url.body, 'bAIgvwAuA4tbDr9d'))
+    const cellNum = body.reqBody.cellNum
+    const bodystr = `{"t":"${$.CryptoJS.MD5($.setck).toString()}","cv":"9.9.9","reqBody":{"cellNum":"${cellNum}"}}`
+    url.body = encrypt(bodystr, 'bAIgvwAuA4tbDr9d')
+    url.headers['Cookie'] = $.setck
+    url.headers['xs'] = $.CryptoJS.MD5(url.url + '_' + bodystr + '_Leadeon/SecurityOrganization').toString()
+    console.warn('fee')
+    $.post(url, (resp, data) => {
+      try {
+        $.fee = JSON.parse(decrypt(data, 'GS7VelkJl5IT1uwQ'))
+        console.warn($.fee)
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve()
+      }
+    })
+  })
+}
+
+function querymeal() {
+  return new Promise((resolve) => {
+    const url = JSON.parse($.getfee) || JSON.parse(chavy_getfee_cmcc)
+    url.url = 'https://clientaccess.10086.cn/biz-orange/BN/newComboMealResouceUnite/getNewComboMealResource'
+    const body = JSON.parse(decrypt(url.body, 'bAIgvwAuA4tbDr9d'))
+    const cellNum = body.reqBody.cellNum
+    const bodystr = `{"t":"${$.CryptoJS.MD5($.setck).toString()}","cv":"9.9.9","reqBody":{"cellNum":"${cellNum}","tag":"3"}}`
+    url.body = encrypt(bodystr, 'bAIgvwAuA4tbDr9d')
+    url.headers['Cookie'] = $.setck
+    url.headers['xs'] = $.CryptoJS.MD5(url.url + '_' + bodystr + '_Leadeon/SecurityOrganization').toString()
+    $.post(url, (resp, data) => {
+      try {
+        $.meal = JSON.parse(decrypt(data, 'GS7VelkJl5IT1uwQ'))
+        console.warn($.meal)
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve()
+      }
+    })
+  })
+}
+
+
+function encrypt(str, key) {
+  return $.CryptoJS.AES.encrypt($.CryptoJS.enc.Utf8.parse(str), $.CryptoJS.enc.Utf8.parse(key), {
+    iv: $.CryptoJS.enc.Utf8.parse('9791027341711819'),
+    mode: $.CryptoJS.mode.CBC,
+    padding: $.CryptoJS.pad.Pkcs7
+  }).toString()
+}
+
+function decrypt(str, key) {
+  return $.CryptoJS.AES.decrypt(str, $.CryptoJS.enc.Utf8.parse(key), {
+    iv: $.CryptoJS.enc.Utf8.parse('9791027341711819'),
+    mode: $.CryptoJS.mode.CBC,
+    padding: $.CryptoJS.pad.Pkcs7
+  }).toString($.CryptoJS.enc.Utf8)
+}
+
 function showmsg() {
   return new Promise((resolve) => {
     $.subt = `[话费剩余] ${$.fee.rspBody.curFee}元`
@@ -90,83 +186,4 @@ function createWidget(pretitle, title, subtitle, other) {
   
   w.presentSmall()
   return w
-}
-
-function loginapp() {
-  return new Promise((resolve) => {
-    const url = JSON.parse(chavy_autologin_cmcc)
-    $.post(url, (resp, data) => {
-      try {
-        $.setck = resp.headers['Set-Cookie']
-        log($.setck)
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        resolve()
-      }
-    })
-  })
-}
-
-
-function queryfee() {
-  return new Promise((resolve) => {
-    const url = JSON.parse(chavy_getfee_cmcc)
-    const body = JSON.parse(decrypt(url.body, 'bAIgvwAuA4tbDr9d'))
-    const cellNum = body.reqBody.cellNum
-    const bodystr = `{"t":"${$.CryptoJS.MD5($.setck).toString()}","cv":"9.9.9","reqBody":{"cellNum":"${cellNum}"}}`
-    url.body = encrypt(bodystr, 'bAIgvwAuA4tbDr9d')
-    url.headers['Cookie'] = $.setck
-    url.headers['xs'] = $.CryptoJS.MD5(url.url + '_' + bodystr + '_Leadeon/SecurityOrganization').toString()
-    $.post(url, (resp, data) => {
-      try {
-        $.fee = JSON.parse(decrypt(data, 'GS7VelkJl5IT1uwQ'))
-        console.warn($.fee)
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        resolve()
-      }
-    })
-  })
-}
-
-function querymeal() {
-  return new Promise((resolve) => {
-    const url = JSON.parse(chavy_getfee_cmcc)
-    url.url = 'https://clientaccess.10086.cn/biz-orange/BN/newComboMealResouceUnite/getNewComboMealResource'
-    const body = JSON.parse(decrypt(url.body, 'bAIgvwAuA4tbDr9d'))
-    const cellNum = body.reqBody.cellNum
-    const bodystr = `{"t":"${$.CryptoJS.MD5($.setck).toString()}","cv":"9.9.9","reqBody":{"cellNum":"${cellNum}","tag":"3"}}`
-    url.body = encrypt(bodystr, 'bAIgvwAuA4tbDr9d')
-    url.headers['Cookie'] = $.setck
-    url.headers['xs'] = $.CryptoJS.MD5(url.url + '_' + bodystr + '_Leadeon/SecurityOrganization').toString()
-    $.post(url, (resp, data) => {
-      try {
-        $.meal = JSON.parse(decrypt(data, 'GS7VelkJl5IT1uwQ'))
-        console.warn($.meal)
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        resolve()
-      }
-    })
-  })
-}
-
-
-function encrypt(str, key) {
-  return $.CryptoJS.AES.encrypt($.CryptoJS.enc.Utf8.parse(str), $.CryptoJS.enc.Utf8.parse(key), {
-    iv: $.CryptoJS.enc.Utf8.parse('9791027341711819'),
-    mode: $.CryptoJS.mode.CBC,
-    padding: $.CryptoJS.pad.Pkcs7
-  }).toString()
-}
-
-function decrypt(str, key) {
-  return $.CryptoJS.AES.decrypt(str, $.CryptoJS.enc.Utf8.parse(key), {
-    iv: $.CryptoJS.enc.Utf8.parse('9791027341711819'),
-    mode: $.CryptoJS.mode.CBC,
-    padding: $.CryptoJS.pad.Pkcs7
-  }).toString($.CryptoJS.enc.Utf8)
 }
