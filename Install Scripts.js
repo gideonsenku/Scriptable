@@ -57,6 +57,11 @@ const scripts = [
     {
       moduleName: 'Config',
       url: 'https://raw.githubusercontent.com/evilbutcher/Scriptables/master/Config.js'
+    },
+    {
+      moduleName: "AppPriceMonitor",
+      url:
+        "https://raw.githubusercontent.com/evilbutcher/Scriptables/master/AppPriceMonitor.js",
     }
   ]
   // Install Scripts.js
