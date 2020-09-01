@@ -1,7 +1,8 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: light-gray; icon-glyph: magic;
-const targetDay = new Date(2020, 12, 22) //设置目标日期（年，月，日，时，分，秒）
+const targetDay = [2020, 12, 23, 0, 0, 0] //年，月，日，时，分，秒
+
 
 const leftTime = await leftTimer()
 if (config.runsInWidget) {
@@ -42,8 +43,9 @@ function createWidget(leftTime) {
 }
 
 function leftTimer(){ 
-  var leftTime = (new Date(targetDay)) - (new Date()); //计算剩余的毫秒数 
-  var days = parseInt(leftTime / 1000 / 60 / 60 / 24 - 31, 10); //计算剩余的天数 
+
+  var leftTime = (new Date(targetDay[0], targetDay[1]-1, targetDay[2], targetDay[3], targetDay[4], targetDay[5])) - (new Date()); //计算剩余的毫秒数 
+  var days = parseInt(leftTime / 1000 / 60 / 60 / 24 , 10); //计算剩余的天数 
   var hours = parseInt(leftTime / 1000 / 60 / 60 % 24 , 10); //计算剩余的小时 
   var minutes = parseInt(leftTime / 1000 / 60 % 60, 10);//计算剩余的分钟 
   var seconds = parseInt(leftTime / 1000 % 60, 10);//计算剩余的秒数 
