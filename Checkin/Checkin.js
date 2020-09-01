@@ -28,11 +28,11 @@ try {
 }
 const size = 12; //字体大小
 const isDark = Device.isUsingDarkAppearance();
-/*const bgColor = new LinearGradient();
+const bgColor = new LinearGradient();
 bgColor.colors = isDark
   ? [new Color("#030079"), new Color("#000000")]
   : [new Color("#a18cd1"), new Color("#fbc2eb")];
-bgColor.locations = [0.0, 1.0];*/
+bgColor.locations = [0.0, 1.0];
 function addTextToListWidget(text, listWidget) {
   let item = listWidget.addText(text);
   item.textColor = isDark ? Color.white() : Color.black();
@@ -83,6 +83,15 @@ function getinfo() {
     $.checkinloginurl = con.checkinloginurl();
     $.checkinemail = con.checkinemail();
     $.checkinpwd = con.checkinpwd();
+    if (
+      $.checkintitle == "" ||
+      $.checkinloginurl == "" ||
+      $.checkinemail == "" ||
+      $.checkinpwd == ""
+    ) {
+      log("配置文件内签到信息不完整");
+      throw new Error(err);
+    }
     log("将使用配置文件内签到信息");
   } catch (err) {
     $.checkintitle = checkintitle;
@@ -301,7 +310,8 @@ function flowFormat(data) {
 function createWidget(checkintitle, checkinMsg, todayUsed, usedData, restData) {
   const w = new ListWidget();
   w.backgroundGradient = bgColor;
-  w.centerAlignContent();
+  w.addSpacer();
+  w.spacing = 5;
 
   const emoji = w.addText(`🪐`);
   emoji.textSize = 30;
@@ -312,6 +322,8 @@ function createWidget(checkintitle, checkinMsg, todayUsed, usedData, restData) {
   addTextToListWidget(usedData, w);
   addTextToListWidget(restData, w);
 
+  w.addSpacer();
+  w.spacing = 5;
   w.presentSmall();
   return w;
 }

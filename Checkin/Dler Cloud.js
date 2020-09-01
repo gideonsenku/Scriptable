@@ -83,6 +83,15 @@ function getinfo() {
     $.checkinloginurl = con.checkinloginurl();
     $.checkinemail = con.checkinemail();
     $.checkinpwd = con.checkinpwd();
+    if (
+      $.checkintitle == "" ||
+      $.checkinloginurl == "" ||
+      $.checkinemail == "" ||
+      $.checkinpwd == ""
+    ) {
+      log("配置文件内签到信息不完整");
+      throw new Error(err);
+    }
     log("将使用配置文件内签到信息");
   } catch (err) {
     $.checkintitle = checkintitle;
@@ -304,7 +313,8 @@ function flowFormat(data) {
 function createWidget(checkintitle, checkinMsg, todayUsed, usedData, restData) {
   const w = new ListWidget();
   w.backgroundGradient = bgColor;
-  w.centerAlignContent();
+  w.addSpacer();
+  w.spacing = 5;
 
   const emoji = w.addText(`🪐`);
   emoji.textSize = 30;
@@ -315,6 +325,8 @@ function createWidget(checkintitle, checkinMsg, todayUsed, usedData, restData) {
   addTextToListWidget(usedData, w);
   addTextToListWidget(restData, w);
 
+  w.addSpacer();
+  w.spacing = 5;
   w.presentSmall();
   return w;
 }

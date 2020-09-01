@@ -55,10 +55,6 @@ const scripts = [
       url: 'https://raw.githubusercontent.com/evilbutcher/Scriptables/master/Dler%20Cloud.js'
     },
     {
-      moduleName: 'Config',
-      url: 'https://raw.githubusercontent.com/evilbutcher/Scriptables/master/Config.js'
-    },
-    {
       moduleName: "AppPriceMonitor",
       url:
         "https://raw.githubusercontent.com/evilbutcher/Scriptables/master/AppPriceMonitor.js",
