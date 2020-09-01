@@ -49,3 +49,8 @@ const res = $.getStr({url},(headers) => {
 
 log(res)
 
+
+// input, value为input的默认值,可选,默认为null
+
+const inputValue = await $.input('title', 'message', 'placehoder','value')
+const inputValue1 = await $.input('title', 'message', 'placehoder')

@@ -188,6 +188,25 @@ const rmdata = (Key) => {
   return true
 }
 
+// Presents an alert where the user can enter a value in a text field.
+// Returns the entered value.
+const input = async(title, message, placeholder, value = null) => {
+  if (!config.runsInWidget) {
+    let alert = new Alert()
+    alert.title = title
+    alert.message = message
+    alert.addTextField(placeholder, value)
+    alert.addAction("OK")
+    alert.addCancelAction("Cancel")
+    let idx = await alert.present()
+    if (idx != -1) {
+      return alert.textFieldValue(0)
+    } else {
+      throw new Error("Cancelled entering value")
+    }
+  }
+}
+
 const logErr = (e, messsage) => {
   console.error(e)
 }
@@ -209,5 +228,6 @@ module.exports = {
   hasdata,
   rmdata,
   msg,
+  input,
   logErr
 }
