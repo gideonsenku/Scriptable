@@ -39,9 +39,10 @@ function createWidget(res) {
   bgColor.colors = [new Color("#1c1c1c"), new Color("#29323c")];
   bgColor.locations = [0.0, 1.0];
   w.backgroundGradient = bgColor;
-  w.centerAlignContent();
+  w.addSpacer();
+  w.spacing = 5;
 
-  const firstLine = w.addText(`[📣]人人影视`);
+  const firstLine = w.addText(`🎬人人影视`);
   firstLine.textSize = 15;
   firstLine.textColor = Color.white();
   firstLine.textOpacity = 0.7;
@@ -50,6 +51,8 @@ function createWidget(res) {
     addTextToListWidget(`• ${items[i]}`, w);
   }
 
+  w.addSpacer();
+  w.spacing = 5;
   w.presentSmall();
   return w;
 }
