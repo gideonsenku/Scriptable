@@ -173,7 +173,7 @@ function createWidget(pretitle, title, subtitle, other) {
   let w = new ListWidget();
 
   const bgColor = new LinearGradient();
-  bgColor.colors = [new Color("#ff7b1c"), new Color("#fe9e0b")];
+  bgColor.colors = [new Color("#a1c4fd"), new Color("#c2e9fb")];
   bgColor.locations = [0.0, 1.0];
   w.backgroundGradient = bgColor;
   w.addSpacer();
@@ -195,8 +195,10 @@ function createWidget(pretitle, title, subtitle, other) {
   otherTxt.textColor = Color.white();
   otherTxt.textSize = 12;
 
-  w.addSpacer();
-  w.spacing = 5;
+  let updateLine = w.addText(`[更新] ${$.time('MM-dd HH:mm')}`)
+  updateLine.textSize = 12
+  updateLine.textColor = Color.black()
+
   w.presentSmall();
   return w;
 }
