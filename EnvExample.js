@@ -54,3 +54,17 @@ log(res)
 
 const inputValue = await $.input('title', 'message', 'placehoder','value')
 const inputValue1 = await $.input('title', 'message', 'placehoder')
+
+
+/**
+ *
+ * 示例:$.time('yyyy-MM-dd qq HH:mm:ss.S')
+ *    :$.time('yyyyMMddHHmmssS')
+ *    y:年 M:月 d:日 q:季 H:时 m:分 s:秒 S:毫秒
+ *    其中y可选0-4位占位符、S可选0-1位占位符，其余可选0-2位占位符
+ * @param {*} fmt 格式化参数
+ * @param {*} ts 时间戳 13位
+ */
+const time = $.time('yyyy-MM-dd HH:mm:ss')
+const time = $.time('MMdd HH:mm:ss',1599124137000)
+console.log(time)
