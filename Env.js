@@ -206,6 +206,7 @@ const input = async(title, message, placeholder, value = null) => {
     }
   }
 }
+
 /**
  *
  * 示例:$.time('yyyy-MM-dd qq HH:mm:ss.S')
@@ -233,6 +234,49 @@ const time = (fmt, ts = null) => {
   return fmt
 }
 
+/**
+ * @description create wiget
+ * @param {*} pretitle required
+ * @param {*} title required
+ * @param {*} subtitle option
+ * @param {*} other option
+ */
+const createWidget = (pretitle, title, subtitle = '', other = '') => {
+  let w = new ListWidget()
+  
+  const bgColor = new LinearGradient()
+  bgColor.colors = [new Color("#a1c4fd"), new Color("#c2e9fb")]
+  bgColor.locations = [0.0, 1.0]
+  w.backgroundGradient = bgColor
+  w.addSpacer();
+  w.spacing = 5;
+  
+  let preTxt = w.addText(pretitle)
+  preTxt.textColor = Color.black()
+  preTxt.applyHeadlineTextStyling()
+  
+  let titleTxt = w.addText(title)
+  titleTxt.textSize = 12
+  titleTxt.textColor = Color.black()
+  
+  
+  let subTxt = w.addText(subtitle)
+  subTxt.textColor = Color.black()
+  subTxt.textSize = 12  
+  
+  let otherTxt = w.addText(other)
+  otherTxt.textColor = Color.black()
+  otherTxt.textSize = 12 
+
+  const updateLine = w.addText(`[更新] ${time('MM-dd HH:mm')}`)
+  updateLine.textSize = 12
+  updateLine.textColor = Color.black()
+  
+  w.presentSmall()
+  return w
+}
+
+
 const logErr = (e, messsage) => {
   console.error(e)
 }
@@ -256,5 +300,6 @@ module.exports = {
   msg,
   input,
   time,
+  createWidget,
   logErr
 }

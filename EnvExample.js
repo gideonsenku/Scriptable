@@ -6,6 +6,8 @@
  * Github: https://github.com/GideonSenku
  */
 
+const { createWidget } = require("./Env")
+
 // init
 // importModule all of Env
 const $ = importModule('Env')
@@ -68,3 +70,7 @@ const inputValue1 = await $.input('title', 'message', 'placehoder')
 const time = $.time('yyyy-MM-dd HH:mm:ss')
 const time = $.time('MMdd HH:mm:ss',1599124137000)
 console.log(time)
+
+// create wiget
+createWidget('pretitle','title')
+createWidget('pretitle','title','subtitle')
