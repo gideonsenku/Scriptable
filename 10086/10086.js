@@ -184,19 +184,19 @@ function createWidget(pretitle, title, subtitle, other) {
   preTxt.applySubheadlineTextStyling();
 
   let titleTxt = w.addText(title);
-  titleTxt.textSize = 12;
+  titleTxt.font = new Font('SF Mono', 12);
   titleTxt.textColor = Color.white();
 
   let subTxt = w.addText(subtitle);
   subTxt.textColor = Color.white();
-  subTxt.textSize = 12;
+  subTxt.font = new Font('SF Mono', 12);
 
   let otherTxt = w.addText(other);
   otherTxt.textColor = Color.white();
-  otherTxt.textSize = 12;
+  otherTxt.font = new Font('SF Mono', 12);
 
   let updateLine = w.addText(`[更新] ${$.time('MM-dd HH:mm')}`)
-  updateLine.textSize = 12
+  updateLine.font = new Font('SF Mono', 12);
   updateLine.textColor = Color.black()
 
   w.presentSmall();

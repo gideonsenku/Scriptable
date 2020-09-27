@@ -49,44 +49,44 @@ function createWidget(res) {
     w.spacing = 5;
 
     const firstLine = w.addText(`[📱]中国联通`);
-    firstLine.textSize = 12;
+    firstLine.font = new Font('SF Mono', 12);
     firstLine.textColor = Color.white();
     firstLine.textOpacity = 0.7;
 
     const trafficLine = w.addText(
       `[${traffic.remainTitle}]${traffic.number}${traffic.unit}`
     );
-    trafficLine.textSize = 12;
+    trafficLine.font = new Font('SF Mono', 12);
     trafficLine.textColor = Color.white();
 
     const flowLine = w.addText(
       `[${flow.remainTitle}]${flow.number}${flow.unit}`
     );
-    flowLine.textSize = 12;
+    flowLine.font = new Font('SF Mono', 12);
     flowLine.textColor = new Color("#6ef2ae");
 
     const voiceLine = w.addText(
       `[${voice.remainTitle}]${voice.number}${voice.unit}`
     );
-    voiceLine.textSize = 12;
+    voiceLine.font = new Font('SF Mono', 12);
     voiceLine.textColor = new Color("#7dbbae");
 
     const creditLine = w.addText(
       `[${credit.remainTitle}]${credit.number}${credit.unit}`
     );
-    creditLine.textSize = 12;
+    creditLine.font = new Font('SF Mono', 12);
     creditLine.textColor = new Color("#ff9468");
 
     const backLine = w.addText(
       `[${back.remainTitle}]${back.number}${back.unit}`
     );
-    backLine.textSize = 12;
+    backLine.font = new Font('SF Mono', 12);
     backLine.textColor = new Color("#ffcc66");
 
     const moneyLine = w.addText(
       `[${money.remainTitle}]${money.number}${money.unit}`
     );
-    moneyLine.textSize = 12;
+    moneyLine.font = new Font('SF Mono', 12);
     moneyLine.textColor = new Color("#ffa7d3");
 
     w.addSpacer();
