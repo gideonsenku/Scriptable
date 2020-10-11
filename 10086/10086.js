@@ -138,7 +138,7 @@ function decrypt(str, key) {
 }
 
 function showmsg() {
-  return new Promise((resolve) => {
+  return new Promise(async(resolve) => {
     $.subt = `[话费] ${$.fee.rspBody.curFee}元`;
     const res = $.meal.rspBody.qryInfoRsp[0].resourcesTotal;
     const flowRes = res.find((r) => r.resourcesCode === "04");
@@ -159,7 +159,7 @@ function showmsg() {
 
     // create and show widget
     if (config.runsInWidget) {
-      let widget = $.createWidget("移不动", $.subt, $.flowRes, $.voiceRes);
+      let widget = await $.createWidget("移不动", $.subt, $.flowRes, $.voiceRes);
       Script.setWidget(widget);
       Script.complete();
     } else {
