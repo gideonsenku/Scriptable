@@ -139,7 +139,7 @@ function decrypt(str, key) {
 
 function showmsg() {
   return new Promise((resolve) => {
-    $.subt = `[话费剩余] ${$.fee.rspBody.curFee}元`;
+    $.subt = `[话费] ${$.fee.rspBody.curFee}元`;
     const res = $.meal.rspBody.qryInfoRsp[0].resourcesTotal;
     const flowRes = res.find((r) => r.resourcesCode === "04");
     const voiceRes = res.find((r) => r.resourcesCode === "01");
@@ -148,18 +148,18 @@ function showmsg() {
       const remUnit = flowRes.remUnit === "05" ? "GB" : "MB";
       const usedUnit = flowRes.usedUnit === "05" ? "GB" : "MB";
       const unit = flowRes.allUnit === "05" ? "GB" : "MB";
-      $.flowRes = `[流量剩余] ${flowRes.allRemainRes}${remUnit}`;
+      $.flowRes = `[流量] ${flowRes.allRemainRes}${remUnit}`;
     }
     if (voiceRes) {
       const remUnit = flowRes.remUnit === "01" ? "分钟" : "";
       const usedUnit = flowRes.usedUnit === "01" ? "分钟" : "";
       const allUnit = "分钟";
-      $.voiceRes = `[语音剩余] ${voiceRes.allRemainRes}${allUnit}`;
+      $.voiceRes = `[语音] ${voiceRes.allRemainRes}${allUnit}`;
     }
 
     // create and show widget
-    if (config.runsInWidget) {
-      let widget = createWidget("移不动", $.subt, $.flowRes, $.voiceRes);
+    if (!config.runsInWidget) {
+      let widget = $.createWidget("移不动", $.subt, $.flowRes, $.voiceRes,'large');
       Script.setWidget(widget);
       Script.complete();
     } else {
@@ -167,38 +167,4 @@ function showmsg() {
     }
     resolve();
   });
-}
-
-function createWidget(pretitle, title, subtitle, other) {
-  let w = new ListWidget();
-
-  const bgColor = new LinearGradient();
-  bgColor.colors = [new Color("#a1c4fd"), new Color("#c2e9fb")];
-  bgColor.locations = [0.0, 1.0];
-  w.backgroundGradient = bgColor;
-  w.addSpacer();
-  w.spacing = 5;
-
-  let preTxt = w.addText(pretitle);
-  preTxt.textColor = Color.white();
-  preTxt.applySubheadlineTextStyling();
-
-  let titleTxt = w.addText(title);
-  titleTxt.font = new Font('SF Mono', 12);
-  titleTxt.textColor = Color.white();
-
-  let subTxt = w.addText(subtitle);
-  subTxt.textColor = Color.white();
-  subTxt.font = new Font('SF Mono', 12);
-
-  let otherTxt = w.addText(other);
-  otherTxt.textColor = Color.white();
-  otherTxt.font = new Font('SF Mono', 12);
-
-  let updateLine = w.addText(`[更新] ${$.time('MM-dd HH:mm')}`)
-  updateLine.font = new Font('SF Mono', 12);
-  updateLine.textColor = Color.black()
-
-  w.presentSmall();
-  return w;
 }
