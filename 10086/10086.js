@@ -158,8 +158,8 @@ function showmsg() {
     }
 
     // create and show widget
-    if (!config.runsInWidget) {
-      let widget = $.createWidget("移不动", $.subt, $.flowRes, $.voiceRes,'large');
+    if (config.runsInWidget) {
+      let widget = $.createWidget("移不动", $.subt, $.flowRes, $.voiceRes);
       Script.setWidget(widget);
       Script.complete();
     } else {
