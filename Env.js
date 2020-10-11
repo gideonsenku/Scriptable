@@ -241,7 +241,7 @@ const time = (fmt, ts = null) => {
  * @param {*} subtitle option
  * @param {*} other option
  */
-const createWidget = (pretitle, title, subtitle = '', other = '') => {
+const createWidget = (pretitle, title, subtitle = '', other = '', preview = '') => {
   let w = new ListWidget()
   
   const bgColor = new LinearGradient()
@@ -253,26 +253,31 @@ const createWidget = (pretitle, title, subtitle = '', other = '') => {
   
   let preTxt = w.addText(pretitle)
   preTxt.textColor = Color.black()
-  preTxt.applyHeadlineTextStyling()
+  preTxt.font = Font.systemFont(16)
   
   let titleTxt = w.addText(title)
-  titleTxt.font = new Font('SF Mono', 12);
+  titleTxt.font = new Font('SF Mono', 12)
   titleTxt.textColor = Color.black()
   
   
   let subTxt = w.addText(subtitle)
   subTxt.textColor = Color.black()
-  subTxt.font = new Font('SF Mono', 12);
+  subTxt.font = new Font('SF Mono', 12)
   
   let otherTxt = w.addText(other)
   otherTxt.textColor = Color.black()
-  otherTxt.font = new Font('SF Mono', 12);
+  otherTxt.font = new Font('SF Mono', 12)
 
   const updateLine = w.addText(`[更新] ${time('MM-dd HH:mm')}`)
-  updateLine.font = new Font('SF Mono', 12);
+  updateLine.font = new Font('SF Mono', 12)
   updateLine.textColor = Color.black()
   
-  w.presentSmall()
+  widgetPreview = preview ? preview: 'small'
+  
+  if(widgetPreview == "small") { w.presentSmall() }
+  else if (widgetPreview == "medium") { w.presentMedium() }
+  else if (widgetPreview == "large") { w.presentLarge() }
+
   return w
 }
 
