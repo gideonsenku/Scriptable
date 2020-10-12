@@ -45,7 +45,19 @@ async function createWidget(res) {
     $.voice = `[${voice.remainTitle}]${voice.number}${voice.unit}`
     $.credit = `[${credit.remainTitle}]${credit.number}${credit.unit}`
     $.back = `[${back.remainTitle}]${back.number}${back.unit}`
-    let widget = await $.createWidget(`[📱]中国联通`, $.traffic, $.flow, $.voice, $.credit, $.back);
+    const opts = {
+      title: '联通5G',
+      texts: {
+        traffic: $.traffic,
+        flow: $.flow,
+        voice: $.voice,
+        credit: $.credit,
+        back: $.back,
+        updateTime: 'true',
+        battery: 'true'
+      }
+    }
+    let widget = await $.createWidget(opts);
     return widget
 
   }
