@@ -38,6 +38,7 @@ const crypto = {
   $.CryptoJS = $.require(crypto);
   $.autologin = await getdata($.KEY_autologin);
   $.getfee = await getdata($.KEY_getfee);
+  log($.autologin)
   await loginapp();
   await queryfee();
   await querymeal();
@@ -159,10 +160,20 @@ function showmsg() {
 
     // create and show widget
     if (config.runsInWidget) {
-      const battery = `[电池] ${$.renderBattery()}`
-      let widget = await $.createWidget("移不动", $.subt, $.flowRes, $.voiceRes, battery);
-      Script.setWidget(widget);
-      Script.complete();
+      const texts = {
+        subt: $.subt,
+        flowRes: $.flowRes,
+        voiceRes: $.voiceRes,
+        updateTime: 'true',
+        battery: 'true'
+      }
+      const opts = {
+        title: '移动5G',
+        texts
+      }
+      let widget = await $.createWidget(opts)      
+      Script.setWidget(widget)
+      Script.complete()
     } else {
       $.msg("移不动", `${$.subt}\n${$.flowRes}\n${$.voiceRes}`, "确定");
     }
