@@ -159,7 +159,8 @@ function showmsg() {
 
     // create and show widget
     if (config.runsInWidget) {
-      let widget = await $.createWidget("移不动", $.subt, $.flowRes, $.voiceRes);
+      const battery = `[电池] ${$.renderBattery()}`
+      let widget = await $.createWidget("移不动", $.subt, $.flowRes, $.voiceRes, battery);
       Script.setWidget(widget);
       Script.complete();
     } else {
