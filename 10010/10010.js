@@ -21,18 +21,17 @@ $.KEY_loginheader = "chavy_tokenheader_10010";
 $.Val_signheader = await getdata($.KEY_signheader);
 $.Val_loginheader = await getdata($.KEY_loginheader);
 
-const res = await getinfo();
+const res = await getinfo()
 if (config.runsInWidget) {
-  let widget = createWidget(res);
+  let widget = await createWidget(res);
   Script.setWidget(widget);
   Script.complete();
 }
 
-function createWidget(res) {
+async function createWidget(res) {
   const signinfo = res;
   if (signinfo.code == "Y") {
     // 基本信息
-
     const traffic = signinfo.data.dataList[0];
     const flow = signinfo.data.dataList[1];
     const voice = signinfo.data.dataList[2];
@@ -40,59 +39,15 @@ function createWidget(res) {
     const back = signinfo.data.dataList[4];
     const money = signinfo.data.dataList[5];
 
-    const w = new ListWidget();
-    const bgColor = new LinearGradient();
-    bgColor.colors = [new Color("#1c1c1c"), new Color("#29323c")];
-    bgColor.locations = [0.0, 1.0];
-    w.backgroundGradient = bgColor;
-    w.addSpacer();
-    w.spacing = 5;
 
-    const firstLine = w.addText(`[📱]中国联通`);
-    firstLine.font = new Font('SF Mono', 12);
-    firstLine.textColor = Color.white();
-    firstLine.textOpacity = 0.7;
+    $.traffic = `[${traffic.remainTitle}]${traffic.number}${traffic.unit}`
+    $.flow = `[${flow.remainTitle}]${flow.number}${flow.unit}`
+    $.voice = `[${voice.remainTitle}]${voice.number}${voice.unit}`
+    $.credit = `[${credit.remainTitle}]${credit.number}${credit.unit}`
+    $.back = `[${back.remainTitle}]${back.number}${back.unit}`
+    let widget = await $.createWidget(`[📱]中国联通`, $.traffic, $.flow, $.voice, $.credit, $.back);
+    return widget
 
-    const trafficLine = w.addText(
-      `[${traffic.remainTitle}]${traffic.number}${traffic.unit}`
-    );
-    trafficLine.font = new Font('SF Mono', 12);
-    trafficLine.textColor = Color.white();
-
-    const flowLine = w.addText(
-      `[${flow.remainTitle}]${flow.number}${flow.unit}`
-    );
-    flowLine.font = new Font('SF Mono', 12);
-    flowLine.textColor = new Color("#6ef2ae");
-
-    const voiceLine = w.addText(
-      `[${voice.remainTitle}]${voice.number}${voice.unit}`
-    );
-    voiceLine.font = new Font('SF Mono', 12);
-    voiceLine.textColor = new Color("#7dbbae");
-
-    const creditLine = w.addText(
-      `[${credit.remainTitle}]${credit.number}${credit.unit}`
-    );
-    creditLine.font = new Font('SF Mono', 12);
-    creditLine.textColor = new Color("#ff9468");
-
-    const backLine = w.addText(
-      `[${back.remainTitle}]${back.number}${back.unit}`
-    );
-    backLine.font = new Font('SF Mono', 12);
-    backLine.textColor = new Color("#ffcc66");
-
-    const moneyLine = w.addText(
-      `[${money.remainTitle}]${money.number}${money.unit}`
-    );
-    moneyLine.font = new Font('SF Mono', 12);
-    moneyLine.textColor = new Color("#ffa7d3");
-
-    w.addSpacer();
-    w.spacing = 5;
-    w.presentSmall();
-    return w;
   }
 }
 
