@@ -239,15 +239,14 @@ const time = (fmt, ts = null) => {
 
 /**
  * @description create wiget
- * @param {*} pretitle required
  * @param {*} title required
- * @param {*} subtitle option
- * @param {*} other option
+ * @param {*} texts required
+ * @param {*} preview option
  */
-const createWidget = async(pretitle, title, subtitle = '', other = '',other1 = '', other2 = '', preview = '') => {
+const createWidget = async({ title, texts = { },spacing = 5, preview = '' }) => {
   const SFMono = { size: 12, color: "ffffff", font: "SF Mono" }
   let w = new ListWidget()
-  w.spacing = 5
+  w.spacing = spacing
   let gradient = new LinearGradient()
   let gradientSettings = await setupGradient()
   
@@ -255,14 +254,14 @@ const createWidget = async(pretitle, title, subtitle = '', other = '',other1 = '
   gradient.locations = gradientSettings.position()
   
   w.backgroundGradient = gradient
-
-  const preTxt = provideText(pretitle, w, { ...SFMono, size: 16 })  
-  const titleTxt = provideText(title, w, SFMono)
-  const subTxt = subtitle ? provideText(subtitle, w, SFMono) : ``
-  const otherTxt = other ? provideText(other, w, SFMono) : ``
-  const otherTxt1 = other1 ? provideText(other1, w, SFMono) : ``
-  const otherTxt2 = other2 ? provideText(other2, w, SFMono) : ``
-  const updateLine = provideText(`[更新] ${time('MM-dd HH:mm')}`, w, SFMono)
+  texts['battery'] ? battery(w, title) : ``
+  for (const text in texts) {
+    if (text != 'battery' && text != 'updateTime' && texts.hasOwnProperty(text)) {
+      const element = texts[text]
+      provideText(element, w, SFMono)
+    }
+  }
+  texts['updateTime'] ? provideText(`[更新] ${time('MM-dd HH:mm')}`, w, SFMono) : ``  
   
   widgetPreview = preview ? preview: 'small'
   
@@ -465,6 +464,82 @@ const renderBattery = () => {
   const batteryLevel = Device.batteryLevel()
   const batteryAscii = `${Math.round(batteryLevel * 100)}%`
   return batteryAscii
+}
+
+
+// Add a battery element to the widget; consisting of a battery icon and percentage.
+function battery(column,title) {
+  const textFormat = {
+    battery: { size: 10, color: "", font: "bold" },
+    title: { size: 16, color: "", font: "semibold" },
+  }
+  const batteryLevel = Device.batteryLevel()
+  // Set up the battery level item
+  let batteryStack = column.addStack()
+  provideText(title, batteryStack, textFormat.title)
+  batteryStack.centerAlignContent()
+  
+  batteryStack.addSpacer()
+  
+  let batteryIcon = batteryStack.addImage(provideBatteryIcon())
+  batteryIcon.imageSize = new Size(20,20)
+  
+
+  // Change the battery icon to red if battery level is <= 20 to match system behavior
+  if ( Math.round(batteryLevel * 100) > 20 || Device.isCharging() ) {
+
+    batteryIcon.tintColor = Color.white()
+
+  } else {
+
+    batteryIcon.tintColor = Color.red()
+
+  }
+
+  // Display the battery status
+  let batteryInfo = provideText('  '+renderBattery(), batteryStack, textFormat.battery)
+
+
+}
+
+
+// Provide the SF Symbols battery icon depending on the battery level.
+function provideBatteryIcon() {
+  
+  // Charging symbol
+  if ( Device.isCharging() ) {
+
+    let batIcon = SFSymbol.named("battery.100.bolt")
+    batIcon.applyLightWeight()
+
+    return batIcon.image
+  }
+  
+  const batteryLevel = Device.batteryLevel()
+  
+  // Battery mostly full
+  if ( Math.round(batteryLevel * 100) > 65 ) {
+
+    let batIcon = SFSymbol.named("battery.100")
+    batIcon.applyLightWeight()
+
+    return batIcon.image
+  }
+  
+  // Battery getting low
+  if ( Math.round(batteryLevel * 100) > 30 ) {
+
+    let batIcon = SFSymbol.named("battery.25")
+    batIcon.applyLightWeight()
+
+    return batIcon.image
+  }
+  
+  // Low battery
+  let batIcon = SFSymbol.named("battery.0")
+  batIcon.applySemiboldWeight()
+
+  return batIcon.image
 }
 
 const logErr = (e, messsage) => {
