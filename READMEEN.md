@@ -20,8 +20,8 @@
 4. Add widget and select the `10010` script, the rendering is as follows
 
 
-<img src="https://user-images.githubusercontent.com/39037656/91274920-05757480-e7b2-11ea-8704-febb2732a62b.PNG" height="30%" width="30%">
-<img src="https://user-images.githubusercontent.com/39037656/91274766-c47d6000-e7b1-11ea-9765-170cb66c5f65.PNG" height="30%" width="30%">
+<img src="https://user-images.githubusercontent.com/39037656/95741978-dd8a9380-0cc1-11eb-95b5-6b48baf80b8e.PNG" height="30%" width="30%">
+
 
 ## Hotlist Monitor
 #### Zhihu Weibo Bilibili RSS Douban RRShare 

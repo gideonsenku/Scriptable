@@ -21,8 +21,7 @@
 4. 添加小组件并选取`10010`脚本即可,效果图如下
 
 
-<img src="https://user-images.githubusercontent.com/39037656/91274920-05757480-e7b2-11ea-8704-febb2732a62b.PNG" height="30%" width="30%">
-<img src="https://user-images.githubusercontent.com/39037656/91274766-c47d6000-e7b1-11ea-9765-170cb66c5f65.PNG" height="30%" width="30%">
+<img src="https://user-images.githubusercontent.com/39037656/95741978-dd8a9380-0cc1-11eb-95b5-6b48baf80b8e.PNG" height="30%" width="30%">
 
 ## 热门监控
 #### 知乎热榜、微博热搜、B站榜单、RSS、豆瓣、人人影视资源
