@@ -244,7 +244,7 @@ const time = (fmt, ts = null) => {
  * @param {*} subtitle option
  * @param {*} other option
  */
-const createWidget = async(pretitle, title, subtitle = '', other = '', preview = '') => {
+const createWidget = async(pretitle, title, subtitle = '', other = '',other1 = '', other2 = '', preview = '') => {
   const SFMono = { size: 12, color: "ffffff", font: "SF Mono" }
   let w = new ListWidget()
   w.spacing = 5
@@ -258,8 +258,10 @@ const createWidget = async(pretitle, title, subtitle = '', other = '', preview =
 
   const preTxt = provideText(pretitle, w, { ...SFMono, size: 16 })  
   const titleTxt = provideText(title, w, SFMono)
-  const subTxt = provideText(subtitle, w, SFMono)
-  const otherTxt = provideText(other, w, SFMono)
+  const subTxt = subtitle ? provideText(subtitle, w, SFMono) : ``
+  const otherTxt = other ? provideText(other, w, SFMono) : ``
+  const otherTxt1 = other1 ? provideText(other1, w, SFMono) : ``
+  const otherTxt2 = other2 ? provideText(other2, w, SFMono) : ``
   const updateLine = provideText(`[更新] ${time('MM-dd HH:mm')}`, w, SFMono)
   
   widgetPreview = preview ? preview: 'small'
@@ -379,7 +381,6 @@ const setupGradient = async() => {
 
   // If it's around noon, the sun is high in the sky.
   if (currentDate.getHours() == 12) { return gradient.noon }
-
   // Otherwise, return the "typical" theme.
   return gradient.midday
 }
@@ -457,6 +458,14 @@ const sameDay = (d1, d2) => {
     d1.getMonth() === d2.getMonth() &&
     d1.getDate() === d2.getDate()
 }
+/**
+ * @description 返回电池百分比
+ */
+const renderBattery = () => {
+  const batteryLevel = Device.batteryLevel()
+  const batteryAscii = `${Math.round(batteryLevel * 100)}%`
+  return batteryAscii
+}
 
 const logErr = (e, messsage) => {
   console.error(e)
@@ -484,5 +493,6 @@ module.exports = {
   createWidget,
   provideText,
   setupLocation,
+  renderBattery,
   logErr
 }
