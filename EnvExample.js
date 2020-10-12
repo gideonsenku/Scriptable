@@ -71,6 +71,18 @@ const time = $.time('yyyy-MM-dd HH:mm:ss')
 const time = $.time('MMdd HH:mm:ss',1599124137000)
 console.log(time)
 
-// create wiget
-createWidget('pretitle','title')
-createWidget('pretitle','title','subtitle')
+// 模版创建小组件
+await $.createWidget({
+  title: 'demo', // 必须
+  texts: { // 可选
+    one: '1',
+    one0: '2',
+    one1: '3',
+    one2: '4',
+    one3: '5',
+    one4: '5',
+    updateTime: 'true' // 可选参数，提供则添加更新时间线
+  },
+  spacing: 1, // 可选参数，设置每行的间隙
+  preview: 'large' // 可选参数，默认small，预览显小组件大小
+ })
