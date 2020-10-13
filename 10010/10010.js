@@ -10,9 +10,14 @@ const $ = importModule("Env");
 
 const prefix = "boxjs.net"; //修改成你用的域名
 
+const title = '联通5G'
+const preview = 'small' // 预览大小 可选:small,medium,large
+const spacing = 5 // 间隙大小
 // option1 manual
-const tel = `填入你的电话号码`;
-const VAL_loginheader = `填入来自BoxJs的数据`;
+
+const tel = `` // 填入你的电话号码
+
+const VAL_loginheader = `` // 填入来自BoxJs的数据
 
 // option2 auto getdata from BoxJS
 $.KEY_signheader = "chavy_signheader_10010";
@@ -22,10 +27,17 @@ $.Val_signheader = await getdata($.KEY_signheader);
 $.Val_loginheader = await getdata($.KEY_loginheader);
 
 const res = await getinfo()
-if (config.runsInWidget) {
-  let widget = await createWidget(res);
-  Script.setWidget(widget);
-  Script.complete();
+await render()
+
+async function render() {
+  // create and show widget
+  if (config.runsInWidget) {
+    let widget = await createWidget(res)
+    Script.setWidget(widget)
+    Script.complete()
+  } else {
+    await createWidget(res)
+  }
 }
 
 async function createWidget(res) {
@@ -46,7 +58,7 @@ async function createWidget(res) {
     $.credit = `[${credit.remainTitle}]${credit.number}${credit.unit}`
     $.back = `[${back.remainTitle}]${back.number}${back.unit}`
     const opts = {
-      title: '联通5G',
+      title,
       texts: {
         traffic: $.traffic,
         flow: $.flow,
@@ -55,7 +67,9 @@ async function createWidget(res) {
         back: $.back,
         updateTime: 'true',
         battery: 'true'
-      }
+      },
+      preview,
+      spacing
     }
     let widget = await $.createWidget(opts);
     return widget
