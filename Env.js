@@ -262,7 +262,7 @@ const createWidget = async({ title, texts = { },spacing = 5, preview = '' }) => 
   w.backgroundGradient = gradient
   texts['battery'] ? battery(w, title) : provideText(title, w, textFormat.title)
   for (const text in texts) {
-    if (text != 'battery' && text != 'updateTime' && texts.hasOwnProperty(text)) {
+    if (text != 'battery' && text != 'updateTime' && texts.hasOwnProperty(text) && texts[text]) {
       const element = texts[text]
       provideText(element, w, textFormat.SFMono)
     }
@@ -508,6 +508,8 @@ function battery(column,title) {
 // Provide a battery SFSymbol with accurate level drawn on top of it.
 function provideBatteryIcon() {
   
+  if (Device.isCharging()) { return SFSymbol.named("battery.100.bolt").image }
+  
   // Set the size of the battery icon.
   const batteryWidth = 87
   const batteryHeight = 41
@@ -551,22 +553,6 @@ const logErr = (e, messsage) => {
   console.error(e)
 }
 
-function test() {
-  createWidget({
-    title: "移动",
-    texts: {
-      one: "1",
-      one1: "1",
-      one2: "1",
-      one3: "1",
-      onee3: "1",
-      one3e: "1",
-      battery: "true"
-    },
-    preview: "small"
-
-  })
-}
 
 module.exports = {
   dict,
