@@ -18,6 +18,7 @@
    如果需要自动获取来自BoxJS的数据，请确保使用tf版本的BoxJS的重写
 3. 添加小组件并选取`10010`脚本即可,效果图如下
 4. 10086操作类似
+5. [样式参考@mzeryck](https://github.com/mzeryck/Weather-Cal)
 
 <img src="https://user-images.githubusercontent.com/39037656/95741978-dd8a9380-0cc1-11eb-95b5-6b48baf80b8e.PNG" height="30%" width="30%">
 
