@@ -6,103 +6,53 @@
  * Github: https://github.com/recall704/Scriptable
  * 本脚本使用了@Gideon_Senku的Env.scriptable，感谢！
  */
-const goupdate = true;
+const goupdate = false;
 const $ = importModule("Env");
-var num = 6; //自定义显示数量
-var rancolor = true; //true为开启随机颜色
-
-try {
-  var { v2ex_num, v2ex_rancolor } = importModule("Config");
-  num = v2ex_num();
-  rancolor = v2ex_rancolor();
-  console.log("将使用配置文件内v2ex配置");
-} catch (e) {
-  console.log("将使用脚本内v2ex配置");
-}
+const title = `📖 v2ex热榜`;
+const preview = "medium";
+const spacing = 5;
 
 const res = await getinfo();
 
-let widget = createWidget(res);
+let widget = await createWidget(res);
 Script.setWidget(widget);
 Script.complete();
 
-function createWidget(res) {
+async function createWidget(res) {
+  var group = res.data;
   items = [];
-  for (var i = 0; i < num; i++) {
-    var item = res[i]["title"];
+  for (var i = 0; i < 6; i++) {
+    var item = res[i].title;
     items.push(item);
   }
   console.log(items);
 
-  const w = new ListWidget();
-  const bgColor = new LinearGradient();
-  bgColor.colors = [new Color("#1c1c1c"), new Color("#29323c")];
-  bgColor.locations = [0.0, 1.0];
-  w.backgroundGradient = bgColor;
-  w.addSpacer();
-  w.spacing = 5;
+  const opts = {
+    title,
+    texts: {
+      text1: `• ${items[0]}`,
+      text2: `• ${items[1]}`,
+      text3: `• ${items[2]}`,
+      text4: `• ${items[3]}`,
+      text5: `• ${items[4]}`,
+      text6: `• ${items[5]}`,
+      battery: "true",
+    },
+    preview,
+    spacing,
+  };
 
-  const firstLine = w.addText(`v2ex`);
-  firstLine.textSize = 15;
-  firstLine.textColor = Color.white();
-  firstLine.textOpacity = 0.7;
-
-  for (var i = 0; i < items.length; i++) {
-    addTextToListWidget(`• ${items[i]}`, w);
-  }
-
-  w.addSpacer();
-  w.spacing = 5;
-  w.presentSmall();
-  return w;
+  let widget = await $.createWidget(opts);
+  return widget;
 }
 
 async function getinfo() {
-  const v2exRequest = {
+  const url = {
     url: `https://www.v2ex.com/api/topics/hot.json`,
-    headers: {
-      "User-Agent": "Mozilla/5.0",
-    },
   };
-  const res = await $.get(v2exRequest);
+  const res = await $.get(url);
   log(res);
   return res;
-}
-
-function addTextToListWidget(text, listWidget) {
-  let item = listWidget.addText(text);
-  if (rancolor == true) {
-    item.textColor = new Color(color16());
-  } else {
-    item.textColor = Color.white();
-  }
-  item.textSize = 12;
-}
-
-function color16() {
-  var r = Math.floor(Math.random() * 256);
-  if (r + 50 < 255) {
-    r = r + 50;
-  }
-  if (r > 230 && r < 255) {
-    r = r - 50;
-  }
-  var g = Math.floor(Math.random() * 256);
-  if (g + 50 < 255) {
-    g = g + 50;
-  }
-  if (g > 230 && g < 255) {
-    g = g - 50;
-  }
-  var b = Math.floor(Math.random() * 256);
-  if (b + 50 < 255) {
-    b = b + 50;
-  }
-  if (b > 230 && b < 255) {
-    b = b - 50;
-  }
-  var color = "#" + r.toString(16) + g.toString(16) + b.toString(16);
-  return color;
 }
 
 //更新代码
