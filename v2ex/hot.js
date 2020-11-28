@@ -116,9 +116,9 @@ function update() {
 
 const scripts = [
   {
-    moduleName: "hot",
+    moduleName: "v2ex_hot",
     url:
-      "https://raw.githubusercontent.com/recall704/Scriptables/master/hot.js",
+      "https://raw.githubusercontent.com/recall704/Scriptable/master/v2ex/hot.js",
   },
 ];
 if (goupdate == true) update();
