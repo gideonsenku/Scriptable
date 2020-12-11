@@ -310,15 +310,25 @@ const provideFont = (fontName, fontSize) => {
  */
 
 const provideText = (string, container, format) => {
-  
-  const textItem = container.addText(string)
+  let url
+  if (typeof string !== 'string') {
+    url = string.url
+    string  = string.text
+  }
+  const stackItem = container.addStack()
+
+  if (url) {
+    stackItem.url = url
+  }
+
+  const textItem = stackItem.addText(string)
   const textFont = format.font || textFormat.defaultText.font
   const textSize = format.size || textFormat.defaultText.size
   const textColor = format.color || textFormat.defaultText.color
   
   textItem.font = provideFont(textFont, textSize)
   textItem.textColor = new Color(textColor)
-  return textItem
+  return stackItem
 }
 
 // Set up the gradient for the widget background.
