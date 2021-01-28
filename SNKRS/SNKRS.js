@@ -32,7 +32,7 @@ async function createWidget(res) {
   // 发布时间: res[0].productInfo[0].launchView.startEntryDate.substr(0, 10)
   const infoLine = []
   for (const product of res) {
-    const date = product.productInfo[0].launchView.startEntryDate.slice(5, 10)
+    const date = product?.productInfo[0]?.launchView.startEntryDate.slice(5, 10)
     const labelName = product.productInfo[0].merchProduct.labelName
     const price = product.productInfo[0].merchPrice.currentPrice
     const Line = `•  ${date} ${labelName} ¥${price}`
