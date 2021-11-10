@@ -21,22 +21,25 @@ Script.complete();
 async function createWidget(res) {
   var group = res.data;
   items = [];
+  urls = [];
   for (var i = 0; i < 6; i++) {
     var item = res[i].title;
+    var v2exUrl = res[i].url;
     items.push(item);
+    urls.push(v2exUrl);
   }
   console.log(items);
 
   const opts = {
     title,
     texts: {
-      text1: `• ${items[0]}`,
-      text2: `• ${items[1]}`,
-      text3: `• ${items[2]}`,
-      text4: `• ${items[3]}`,
-      text5: `• ${items[4]}`,
-      text6: `• ${items[5]}`,
-      battery: "true",
+      text1: { text : `• ${items[0]}`, url: urls[0] },
+      text2: { text : `• ${items[1]}`, url: urls[1] },
+      text3: { text : `• ${items[2]}`, url: urls[2] },
+      text4: { text : `• ${items[3]}`, url: urls[3] },
+      text5: { text : `• ${items[4]}`, url: urls[4] },
+      text6: { text : `• ${items[5]}`, url: urls[5] },
+      battery: "true"
     },
     preview,
     spacing,
