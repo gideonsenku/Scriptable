@@ -38,3 +38,18 @@ RSS监控[地址](https://github.com/GideonSenku/Scriptable/tree/master/RSS) 最
 
 <img src="https://user-images.githubusercontent.com/39037656/90985347-e4443680-e5ad-11ea-9217-03938837199b.PNG" height="30%" width="30%">
 
+## Claude Usage
+
+> Claude AI 用量监控小组件，支持主屏幕和锁屏小组件
+
+### 食用方式
+0. 下载本仓库的`Env.js`和`ClaudeUsage/claude-usage.js`保存到`Scriptable`
+1. 打开`claude-usage.js`，填入你的`CLAUDE_ORG_ID`和`CLAUDE_COOKIE`
+   - 登录 [claude.ai](https://claude.ai)，打开浏览器开发者工具，在网络请求中找到`usage`接口，复制请求头中的`Cookie`和 URL 中的`organization id`
+2. 添加小组件并选取`claude-usage`脚本即可
+3. 支持的小组件尺寸：
+   - 主屏幕：`small`、`medium`、`large`
+   - 锁屏：`accessoryRectangular`、`accessoryCircular`、`accessoryInline`
+
+<img src="https://github.com/user-attachments/assets/a1a2c407-fe5d-4c1f-b205-3a1c8a2fd1bf" height="30%" width="30%">
+
